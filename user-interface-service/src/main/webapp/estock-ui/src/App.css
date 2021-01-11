@@ -1,0 +1,137 @@
+body {
+    background: url("background1.png") no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+nav {
+    height: 50px;
+    width: 100%;
+}
+
+label.logo {
+    color: #062238;
+    font-size: 35px;
+    line-height: 50px;
+    padding: 0 100px;
+    font-weight: bold;
+}
+
+nav ul {
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 50px;
+    margin: 0 5px;
+}
+
+nav ul li a {
+    color: #062238;
+    font-size: 17px;
+    padding: 7px 14px;
+    border-radius: 3px;
+}
+
+a:hover {
+    background: none;
+    color: white;
+    transition: .5s;
+}
+
+.checkBtn {
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+.content {
+    position: absolute;
+    top: 180px;
+    right: 50px;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    color: #211e1e;
+}
+
+h2 {
+    color: #ffffff;
+    padding-bottom: 16px;
+}
+
+.createAccount {
+    margin-top: 10px;
+    color: white;
+    background-color: #1daed2;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 6px 18px;
+    border-radius: 25px;
+}
+
+@media (max-width: 952px) {
+    label.logo {
+        font-size: 30px;
+        padding-left: 50px;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 858px) {
+    .checkBtn {
+        display: block;
+    }
+
+    ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #2c3e50;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+
+    nav ul li {
+        display: block;
+        line-height: 60px;
+    }
+
+    nav ul li a {
+        font-size: 14px;
+    }
+
+    a:hover {
+        background: none;
+        color: #0082e6;
+    }
+
+    #check:checked ~ ul {
+        left: 0;
+    }
+
+}
