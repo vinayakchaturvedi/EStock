@@ -17,7 +17,7 @@ class SignIn extends Component {
     }
 
     handleSubmit(event) {
-        this.props.history.push('/homePage');
+        this.props.history.push('/HomePage');
         event.preventDefault()
     }
 
