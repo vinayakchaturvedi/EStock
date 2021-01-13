@@ -236,14 +236,14 @@ a:hover {
     }
 
     nav {
-        background: #617f9c;
+        background: rgba(133, 134, 138, 0.85);
     }
 
     ul {
         position: fixed;
         width: 100%;
         height: 100vh;
-        background: #617f9c;
+        background: rgba(137, 138, 140, 0.55);
         top: 80px;
         left: -100%;
         text-align: center;
