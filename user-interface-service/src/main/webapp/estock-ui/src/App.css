@@ -1,7 +1,7 @@
 body {
     background: url("background1.png") no-repeat;
     background-size: cover;
-    height: calc(100vh - 80px);
+    height: calc(118vh - 80px);
 }
 
 * {
@@ -96,8 +96,15 @@ a:hover {
 }
 
 .SignUp * {
+    position: relative;
     margin: 0;
     padding: 0;
+}
+
+.SignUp {
+    position: absolute;
+    right: 60px;
+    top: 20px;
 }
 
 .SignUp .register {
@@ -137,7 +144,6 @@ a:hover {
 }
 
 .SignUp .firstName {
-    position: relative;
     left: 200px;
     top: -37px;
     line-height: 40px;
@@ -148,7 +154,6 @@ a:hover {
 }
 
 .SignUp .lastName {
-    position: relative;
     left: 330px;
     top: -80px;
     line-height: 40px;
@@ -160,7 +165,6 @@ a:hover {
 }
 
 .SignUp .firstLabel {
-    position: relative;
     color: #E5E5E5;
     text-transform: capitalize;
     font-size: 14px;
@@ -169,7 +173,6 @@ a:hover {
 }
 
 .SignUp .lastLabel {
-    position: relative;
     color: #E5E5E5;
     text-transform: capitalize;
     font-size: 14px;
@@ -178,7 +181,6 @@ a:hover {
 }
 
 .SignUp .email, .contactNumber, .password{
-    position: relative;
     left: 200px;
     top: -34px;
     line-height: 40px;

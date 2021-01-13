@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import {Link} from "react-router-dom";
 
 class SignIn extends Component {
 
@@ -34,35 +33,39 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div className="Login">
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group size="lg" controlId="email">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control
-                            autoFocus
+            <div className="SignUp">
+                <div className="register">
+                    <h1>Create an account</h1>
+                    <p>New at the portal?<Link to="/SignUp"> Sign Up</Link></p>
+                </div>
+                <div className="main">
+                    <form onSubmit={this.handleSubmit}>
+                        <h2 className="name">Email Address</h2>
+                        <input
                             type="email"
                             name="email"
-                            placeholder="Email"
+                            required="True"
+                            className="email"
+                            placeholder="Email address"
                             value={this.state.email}
                             onChange={this.handleChange}
                         />
-                    </Form.Group>
-                    <Form.Group size="lg" controlId="password">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
+                        <br/>
+                        <h2 className="name">Password</h2>
+                        <input
                             type="password"
                             name="password"
+                            required="True"
+                            className="password"
                             placeholder="Password"
                             value={this.state.password}
                             onChange={this.handleChange}
                         />
-                    </Form.Group>
-                    <Button block size="lg" type="submit" disabled={!this.validateForm}>
-                        Login
-                    </Button>
-                </Form>
+                        <button className="registerButton" disabled={!this.validateForm}>Sign in</button>
+                    </form>
+                </div>
             </div>
-        )
+        );
     }
 
 }
