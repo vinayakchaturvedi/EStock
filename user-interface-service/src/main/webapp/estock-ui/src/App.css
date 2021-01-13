@@ -1,7 +1,7 @@
 body {
     background: url("background1.png") no-repeat;
     background-size: cover;
-    height: calc(118vh - 80px);
+    height: calc(100vh - 80px);
 }
 
 * {
@@ -180,7 +180,7 @@ a:hover {
     top: -45px;
 }
 
-.SignUp .email, .contactNumber, .password{
+.SignUp .email, .contactNumber, .password {
     left: 200px;
     top: -34px;
     line-height: 40px;
@@ -203,11 +203,11 @@ a:hover {
     border-radius: 25px;
 }
 
-.SignUp a{
+.SignUp a {
     color: #b3a9a9;
 }
 
-.SignUp a:hover{
+.SignUp a:hover {
     color: #47742f;
 }
 
@@ -219,6 +219,14 @@ a:hover {
 
     nav ul li a {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 1050px) {
+    body {
+        background: url("background2.png") no-repeat;
+        background-size: cover;
+        height: calc(118vh - 80px);
     }
 }
 
