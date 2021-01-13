@@ -35,7 +35,7 @@ class SignIn extends Component {
         return (
             <div className="SignUp">
                 <div className="register">
-                    <h1>Create an account</h1>
+                    <h1>Enter your Credentials</h1>
                     <p>New at the portal?<Link to="/SignUp"> Sign Up</Link></p>
                 </div>
                 <div className="main">
