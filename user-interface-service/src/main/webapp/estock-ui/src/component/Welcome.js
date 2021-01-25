@@ -22,11 +22,12 @@ class Welcome extends Component {
                     </label>
                     <label className="logo">EStock</label>
                     <ul>
-                        <li><Link to="/SignIn">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><Link to="/SignIn">About</Link></li>
                         <li><Link to="/SignIn">Services</Link></li>
                         <li><Link to="/SignIn">Contact</Link></li>
                         <li><Link to="/SignIn">Sign in</Link></li>
+                        <li><Link to="/Dashboard">Dashboard</Link></li>
                         <li className="createAccountShort"><Link to="/SignUp">Create Account</Link></li>
                     </ul>
                 </nav>
