@@ -14,10 +14,10 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="customer-service" target="11" />
-      <module name="estock-core" target="11" />
-      <module name="eureka-server" target="11" />
-      <module name="user-interface-service" target="11" />
+      <module name="customer-service" target="1.8" />
+      <module name="estock-core" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="user-interface-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
