@@ -23,8 +23,15 @@ class Dashboard extends Component {
 
     render() {
 
+        let i = 0;
         const currCanvas = this.state.stocksToShow.map(
-            stock => <div><GenerateGraph name={stock} /></div>
+            stock =>
+                <div>
+                    <GenerateGraph
+                        name={stock}
+                        key={i++}
+                    />
+                </div>
         )
 
         return (
