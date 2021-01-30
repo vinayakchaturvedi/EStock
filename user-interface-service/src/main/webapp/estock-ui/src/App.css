@@ -1,5 +1,5 @@
 body {
-    background: url("background1.png") no-repeat;
+    background: url("background2.png") no-repeat;
     background-size: cover;
     height: calc(100vh - 80px);
 }
@@ -209,6 +209,13 @@ a:hover {
 
 .SignUp a:hover {
     color: #47742f;
+}
+
+.stock {
+    position: absolute;
+    right: 20px;
+    width: 641px;
+    height: 375px;
 }
 
 @media (max-width: 952px) {
