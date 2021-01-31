@@ -6,28 +6,26 @@ class GenerateGraph extends Component {
     constructor(props) {
         super();
         this.state = {
+            apiKey: props.apiKey,
             stockName: props.name,
+            numberOfDays: props.numberOfDays,
             isLoading: false,
             apiOutput: {},
-            label: "",
         }
+
+        this.showChart = this.showChart.bind(this)
     }
 
     async componentDidMount() {
-        console.log(this.state.stockName)
         this.setState({
             isLoading: true
         })
 
-        await fetch("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + this.state.stockName + "&&apikey=6XAKFCNBJ16IVXO6")
-            .then(response => response.json())
-            .then(data => {
-                this.setState({
-                    apiOutput: data,
-                    label: data["Meta Data"]["2. Symbol"],
-                    isLoading: false
-                })
-            })
+        this.setState({
+                apiOutput: await require('../data_and_config/' + this.state.stockName + '.json'),
+                isLoading: false
+            }
+        )
 
         Date.prototype.yyyymmdd = function () {
             let mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -39,12 +37,16 @@ class GenerateGraph extends Component {
             ].join('');
         };
 
+        this.showChart(this.state.numberOfDays);
+    }
+
+    showChart(numberOfDays) {
         let open = []
         let close = []
         let label = []
-        let startDate = Date.parse(this.state.apiOutput["Meta Data"]["3. Last Refreshed"]) - 2592000000
+        let startDate = Date.parse(this.state.apiOutput["Meta Data"]["3. Last Refreshed"]) - numberOfDays * 86400000
 
-        for (let i = 0; i <= 30; i++) {
+        for (let i = 0; i <= numberOfDays; i++) {
             let curr = new Date(startDate + (i * 86400000))
             let timeSeries = this.state.apiOutput["Time Series (Daily)"]
             if (timeSeries.hasOwnProperty(curr.yyyymmdd())) {
@@ -65,29 +67,38 @@ class GenerateGraph extends Component {
                         backgroundColor: 'rgb(227,139,65)',
                         borderColor: 'rgb(0,99,132)',
                         data: open
+                    },
+                    {
+                        label: "CLOSE",
+                        backgroundColor: 'rgb(158,230,32)',
+                        borderColor: 'rgb(237,9,59)',
+                        data: close
                     }
                 ],
             },
             options: {
                 legend: {
                     labels: {
-                        fontColor: 'rgb(46,96,207)'
+                        fontColor: 'rgb(0,0,0)',
                     }
                 },
                 title: {
                     display: true,
                     fontColor: 'blue',
-                    text: this.state.label
+                    fontSize: 16,
+                    text: this.state.apiOutput["Meta Data"]["2. Symbol"],
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: 'rgb(46,96,207)'
+                            fontColor: 'rgb(0,0,0)',
+                            fontSize: 16,
                         },
                     }],
                     xAxes: [{
                         ticks: {
-                            fontColor: 'rgb(46,96,207)'
+                            fontColor: 'rgb(0,0,0)',
+                            fontSize: 16,
                         },
                     }]
                 }

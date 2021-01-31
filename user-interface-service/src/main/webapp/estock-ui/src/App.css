@@ -213,9 +213,31 @@ a:hover {
 
 .stock {
     position: absolute;
-    right: 20px;
-    width: 641px;
+    right: 40px;
+    width: 841px;
     height: 375px;
+    margin-top: 20px;
+}
+
+.stock .updateGraph{
+    display: inline-block;
+}
+
+.stock h2{
+    margin-right: 80px;
+    margin-left: 30px;
+}
+
+.stock button{
+    margin-top: 5px;
+    margin-left: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #6f6e6e;
+    font-size: 22px;
+    width: 120px;
+    padding: 6px 22px;
+    border-radius: 25px;
 }
 
 @media (max-width: 952px) {
