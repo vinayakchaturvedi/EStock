@@ -7,7 +7,6 @@ class Dashboard extends Component {
         super();
         this.state = {
             stocksToShow: [],
-            apiKey: "",
             numberOfDays: 0,
             isLoading: true
         }
@@ -19,7 +18,6 @@ class Dashboard extends Component {
 
         this.setState({
                 stocksToShow: await require('../data_and_config/StockToShow.json')["Stocks"],
-                apiKey: await require('../data_and_config/StockToShow.json')["ApiKey"],
                 numberOfDays: await require('../data_and_config/StockToShow.json')["NumberOfDays"],
                 isLoading: false
             }
@@ -47,7 +45,6 @@ class Dashboard extends Component {
                 <div>
                     <GenerateGraph
                         name={stock}
-                        apiKey={this.state.apiKey}
                         numberOfDays={this.state.numberOfDays}
                         key={index}
                     />

@@ -1,11 +1,10 @@
 {
   "Stocks": [
-    "BSE:TATASTEEL",
-    "BSE:RELIANCE",
-    "BSE:SBIN",
-    "BSE:MARUTI",
-    "BSE:ONGC"
+    "MSFT",
+    "GOOGL",
+    "AAPL",
+    "TSLA",
+    "AMZN"
   ],
-  "ApiKey": "6XAKFCNBJ16IVXO6",
   "NumberOfDays": 100
 }

@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import {Chart} from "react-chartjs-2";
+import {Link} from "react-router-dom";
 
 class GenerateGraph extends Component {
 
     constructor(props) {
         super();
         this.state = {
-            apiKey: props.apiKey,
             stockName: props.name,
             numberOfDays: props.numberOfDays,
             isLoading: false,
@@ -22,7 +22,7 @@ class GenerateGraph extends Component {
         })
 
         this.setState({
-                apiOutput: await require('../data_and_config/' + this.state.stockName + '.json'),
+                apiOutput: await require('../data_and_config/TS_Daily/' + this.state.stockName + '.json'),
                 isLoading: false
             }
         )
@@ -113,6 +113,10 @@ class GenerateGraph extends Component {
                 <canvas
                     id={this.state.stockName}
                 />
+                <Link to={{
+                    pathname: "/ExtendedStockView",
+                    stockName: this.state.stockName
+                }}> View Details</Link>
             </div>
         );
     }
