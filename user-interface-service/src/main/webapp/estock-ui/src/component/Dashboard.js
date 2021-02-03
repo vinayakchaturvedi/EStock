@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import GenerateGraph from "./GenerateGraph";
+import GenerateView from "./GenerateView";
+import index from "react-chartjs-2";
 
 class Dashboard extends Component {
 
@@ -50,6 +52,7 @@ class Dashboard extends Component {
                     />
                 </div>
         )
+
 
         return (
             <div className="stock">

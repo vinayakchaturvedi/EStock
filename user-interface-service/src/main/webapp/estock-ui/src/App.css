@@ -84,6 +84,7 @@ a:hover {
 .createAccount {
     margin-top: 20px;
     color: white;
+    color: white;
     background-color: #6f6e6e;
     text-decoration: none;
     font-size: 18px;
@@ -214,7 +215,7 @@ a:hover {
 .stock {
     position: absolute;
     right: 40px;
-    width: 841px;
+    width: 1500px;
     height: 375px;
     margin-top: 20px;
 }
@@ -239,7 +240,45 @@ a:hover {
     padding: 6px 22px;
     border-radius: 25px;
 }
+.stock-view-card{
+    padding: 10px;
+    border: 2px solid rgb(98, 78, 78);
+    margin: 20px;
 
+}
+.stock-view-card h5{
+    color:  #003333;
+}
+.stock-view-card p{
+    color:  #004d4d;
+}
+.stock-view-card button{
+    color: black;
+    font-size: 20px;
+    width: 120px;
+    padding: 6px 22px;
+    float: inside;
+}
+.row {
+    margin-top: 30px;
+    position: inherit;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
+
+.row .col2{
+    float:left;
+    width:50%;
+    overflow:hidden;
+    margin-top: 30px;
+}
+
+.row .col1{
+    float:right;
+    width:50%;
+    overflow:hidden;
+}
 .ExtendedStockView{
     margin: 80px 10px;
 }
@@ -282,6 +321,7 @@ a:hover {
     font-size: 35px;
     padding: 14px;
 }
+
 
 @media (max-width: 952px) {
     label.logo {

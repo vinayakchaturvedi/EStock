@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Chart} from "react-chartjs-2";
 import {Link} from "react-router-dom";
+import GenerateView from "./GenerateView";
 
 class GenerateGraph extends Component {
 
@@ -14,7 +15,9 @@ class GenerateGraph extends Component {
         }
 
         this.showChart = this.showChart.bind(this)
+
     }
+
 
     async componentDidMount() {
         this.setState({
@@ -109,7 +112,8 @@ class GenerateGraph extends Component {
 
     render() {
         return (
-            <div style={{display: this.state.isLoading ? "none" : "block"}}>
+            <div style={{display: this.state.isLoading ? "none" : "block"}} className="row">
+                <div className="col1">
                 <canvas
                     id={this.state.stockName}
                 />
@@ -117,6 +121,13 @@ class GenerateGraph extends Component {
                     pathname: "/ExtendedStockView",
                     stockName: this.state.stockName
                 }}> View Details</Link>
+                </div>
+                <div className="col2">
+                    &nbsp;
+                <GenerateView
+                    name={this.props.name}
+                />
+                </div>
             </div>
         );
     }
