@@ -242,43 +242,37 @@ a:hover {
 }
 .stock-view-card{
     padding: 10px;
-    border: 2px solid rgb(98, 78, 78);
     margin: 20px;
+}
 
-}
-.stock-view-card h5{
-    color:  #003333;
-}
-.stock-view-card p{
-    color:  #004d4d;
-}
 .stock-view-card button{
-    color: black;
+    color: #000000;
     font-size: 20px;
     width: 120px;
     padding: 6px 22px;
     float: inside;
 }
-.row {
-    margin-top: 30px;
-    position: inherit;
-    display:flex;
-    flex-direction:row;
-    justify-content: space-around;
+
+.GenerateView .container{
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    left: -10%;
 }
 
-.row .col2{
-    float:left;
-    width:50%;
-    overflow:hidden;
-    margin-top: 30px;
+.GenerateView .item{
+    background: rgba(137, 138, 140, 0.55);
+    margin: 3px;
+    padding: 34px;
 }
 
-.row .col1{
-    float:right;
-    width:50%;
-    overflow:hidden;
+.stock-view-card .companyDetails{
+    display: inline-block;
+    font-size: 24px;
+    padding: 7px;
 }
+
 .ExtendedStockView{
     margin: 80px 10px;
 }
@@ -292,6 +286,7 @@ a:hover {
 
 .ExtendedStockView .item{
     border: 2px solid rgb(98, 78, 78);
+    background: rgba(137, 138, 140, 0.55);
     margin: 3px;
     padding: 34px;
 }
@@ -322,6 +317,17 @@ a:hover {
     padding: 14px;
 }
 
+.buyStock {
+    margin-top: 2%;
+    margin-left: 2%;
+    text-align: center;
+    color: #ffffff;
+    background-color: #6f6e6e;
+    font-size: 22px;
+    width: 200px;
+    padding: 6px 22px;
+    border-radius: 25px;
+}
 
 @media (max-width: 952px) {
     label.logo {

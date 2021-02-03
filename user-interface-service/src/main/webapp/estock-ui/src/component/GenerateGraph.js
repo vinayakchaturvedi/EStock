@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Chart} from "react-chartjs-2";
-import {Link} from "react-router-dom";
 import GenerateView from "./GenerateView";
 
 class GenerateGraph extends Component {
@@ -9,13 +8,12 @@ class GenerateGraph extends Component {
         super();
         this.state = {
             stockName: props.name,
-            numberOfDays: props.numberOfDays,
+            date: "",
             isLoading: false,
             apiOutput: {},
         }
 
         this.showChart = this.showChart.bind(this)
-
     }
 
 
@@ -25,38 +23,45 @@ class GenerateGraph extends Component {
         })
 
         this.setState({
-                apiOutput: await require('../data_and_config/TS_Daily/' + this.state.stockName + '.json'),
+                apiOutput: await require('../data_and_config/TS_Intraday/' + this.state.stockName + '.json'),
                 isLoading: false
             }
         )
 
-        Date.prototype.yyyymmdd = function () {
+        Date.prototype.dateTimeFormat = function () {
             let mm = this.getMonth() + 1; // getMonth() is zero-based
             let dd = this.getDate();
+            let hh = this.getHours();
+            let min = this.getMinutes();
 
             return [this.getFullYear(), '-',
                 (mm > 9 ? '' : '0') + mm, '-',
-                (dd > 9 ? '' : '0') + dd
+                (dd > 9 ? '' : '0') + dd, ' ',
+                hh, ':', (min > 9 ? '' : '0') + min, ':00'
             ].join('');
         };
 
-        this.showChart(this.state.numberOfDays);
+        this.showChart();
     }
 
-    showChart(numberOfDays) {
+    showChart() {
         let open = []
-        let close = []
         let label = []
-        let startDate = Date.parse(this.state.apiOutput["Meta Data"]["3. Last Refreshed"]) - numberOfDays * 86400000
+        let startTime = Date.parse(this.state.apiOutput["Meta Data"]["3. Last Refreshed"]) - 36000000
+        let endTime = Date.parse(this.state.apiOutput["Meta Data"]["3. Last Refreshed"])
+        let iterator = startTime;
+        this.setState({
+            date: new Date(endTime).dateTimeFormat().substr(0, 10)
+        })
 
-        for (let i = 0; i <= numberOfDays; i++) {
-            let curr = new Date(startDate + (i * 86400000))
-            let timeSeries = this.state.apiOutput["Time Series (Daily)"]
-            if (timeSeries.hasOwnProperty(curr.yyyymmdd())) {
-                open.push(timeSeries[curr.yyyymmdd()]["1. open"])
-                close.push(timeSeries[curr.yyyymmdd()]["4. close"])
-                label.push(curr.yyyymmdd())
+        while (iterator !== endTime) {
+            let curr = new Date(iterator)
+            let timeSeries = this.state.apiOutput["Time Series (5min)"]
+            if (timeSeries.hasOwnProperty(curr.dateTimeFormat())) {
+                open.push(timeSeries[curr.dateTimeFormat()]["1. open"])
+                label.push(curr.dateTimeFormat().substr(11,5))
             }
+            iterator += 300000
         }
 
         let ctx = document.getElementById(this.state.stockName).getContext('2d');
@@ -66,16 +71,10 @@ class GenerateGraph extends Component {
                 labels: label,
                 datasets: [
                     {
-                        label: "OPEN",
+                        label: "Stock Price",
                         backgroundColor: 'rgb(227,139,65)',
                         borderColor: 'rgb(0,99,132)',
                         data: open
-                    },
-                    {
-                        label: "CLOSE",
-                        backgroundColor: 'rgb(158,230,32)',
-                        borderColor: 'rgb(237,9,59)',
-                        data: close
                     }
                 ],
             },
@@ -88,8 +87,8 @@ class GenerateGraph extends Component {
                 title: {
                     display: true,
                     fontColor: 'blue',
-                    fontSize: 16,
-                    text: this.state.apiOutput["Meta Data"]["2. Symbol"],
+                    fontSize: 20,
+                    text: this.state.date,
                 },
                 scales: {
                     yAxes: [{
@@ -112,21 +111,20 @@ class GenerateGraph extends Component {
 
     render() {
         return (
-            <div style={{display: this.state.isLoading ? "none" : "block"}} className="row">
-                <div className="col1">
-                <canvas
-                    id={this.state.stockName}
-                />
-                <Link to={{
-                    pathname: "/ExtendedStockView",
-                    stockName: this.state.stockName
-                }}> View Details</Link>
-                </div>
-                <div className="col2">
-                    &nbsp;
-                <GenerateView
-                    name={this.props.name}
-                />
+            <div style={{display: this.state.isLoading ? "none" : "block"}} className="GenerateView">
+                <div className="container">
+                    <div className="item graph">
+                        <canvas
+                            id={this.state.stockName}
+                            height="180px"
+                        />
+                    </div>
+                    <div className="item">
+                        &nbsp;
+                        <GenerateView
+                            name={this.state.stockName}
+                        />
+                    </div>
                 </div>
             </div>
         );

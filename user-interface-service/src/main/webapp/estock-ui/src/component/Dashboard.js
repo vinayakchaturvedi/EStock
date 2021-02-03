@@ -1,7 +1,5 @@
 import React, {Component} from "react";
 import GenerateGraph from "./GenerateGraph";
-import GenerateView from "./GenerateView";
-import index from "react-chartjs-2";
 
 class Dashboard extends Component {
 
@@ -56,26 +54,6 @@ class Dashboard extends Component {
 
         return (
             <div className="stock">
-                <div>
-                    <div className="updateGraph">
-                        <h2>Number of days: </h2>
-                    </div>
-                    <div className="updateGraph">
-                        <button onClick={this.handleClick} value="10">
-                            10
-                        </button>
-                    </div>
-                    <div className="updateGraph">
-                        <button onClick={this.handleClick} value="30">
-                            30
-                        </button>
-                    </div>
-                    <div className="updateGraph">
-                        <button onClick={this.handleClick} value="100">
-                            100
-                        </button>
-                    </div>
-                </div>
                 {this.state.isLoading ? this.setStateToFalse() :
                     <div>
                         {currCanvas}

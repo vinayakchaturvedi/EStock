@@ -88,6 +88,7 @@ class ExtendedStockView extends Component {
             label.push(annualReports[index].fiscalDateEnding)
             yAxisData.push(annualReports[index][this.state.companyReportQueryType])
         }
+        yAxisData.reverse();
 
         let ctx = document.getElementById(this.state.stockName + "company_report").getContext('2d');
         let oldChart = this.state.companyReportChart;
@@ -341,6 +342,7 @@ class ExtendedStockView extends Component {
                                 &nbsp; &nbsp; &darr;
                             </p>
                         </div>
+                        <button className="buyStock">Buy Stock</button>
                     </div>
                 </div>
             </div>

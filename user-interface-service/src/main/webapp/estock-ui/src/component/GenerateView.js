@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
 
 class GenerateView extends Component{
 
@@ -59,7 +60,10 @@ class GenerateView extends Component{
 
                 <div>
                     <h5 className="companyDetails">Name: </h5>
-                    <p className="companyDetails">{this.state.companyOverview.Name}</p>
+                    <Link to={{
+                        pathname: "/ExtendedStockView",
+                        stockName: this.state.stockName
+                    }}><h5 className="companyDetails">{this.state.companyOverview.Name}</h5></Link>
                 </div>
                 <div>
                     <h5 className="companyDetails">Asset Type: </h5>
@@ -112,7 +116,6 @@ class GenerateView extends Component{
                 <div className="view-button">
                     <button onClick={this.handleClick}>Buy Stock</button>
                 </div>
-
             </div>
         )
     }
