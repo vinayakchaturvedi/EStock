@@ -25,7 +25,7 @@ class SignUp extends Component {
     }
 
     handleSubmit(event) {
-        this.props.history.push('/HomePage');
+        this.props.history.push('/DashBoard');
         event.preventDefault()
     }
 
