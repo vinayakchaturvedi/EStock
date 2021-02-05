@@ -1,5 +1,5 @@
 body {
-    background: url("background1.png") no-repeat;
+    background: url("background2.png") no-repeat fixed;
     background-size: cover;
     height: calc(100vh - 80px);
 }
@@ -83,6 +83,7 @@ a:hover {
 
 .createAccount {
     margin-top: 20px;
+    color: white;
     color: white;
     background-color: #6f6e6e;
     text-decoration: none;
@@ -209,6 +210,123 @@ a:hover {
 
 .SignUp a:hover {
     color: #47742f;
+}
+
+.stock {
+    position: absolute;
+    right: 40px;
+    width: 1500px;
+    height: 375px;
+    margin-top: 20px;
+}
+
+.stock .updateGraph{
+    display: inline-block;
+}
+
+.stock h2{
+    margin-right: 80px;
+    margin-left: 30px;
+}
+
+.stock button{
+    margin-top: 5px;
+    margin-left: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #6f6e6e;
+    font-size: 22px;
+    width: 120px;
+    padding: 6px 22px;
+    border-radius: 25px;
+}
+.stock-view-card{
+    padding: 10px;
+    margin: 20px;
+}
+
+.stock-view-card button{
+    color: #000000;
+    font-size: 20px;
+    width: 120px;
+    padding: 6px 22px;
+    float: inside;
+}
+
+.GenerateView .container{
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    left: -10%;
+}
+
+.GenerateView .item{
+    background: rgba(137, 138, 140, 0.55);
+    margin: 3px;
+    padding: 34px;
+}
+
+.stock-view-card .companyDetails{
+    display: inline-block;
+    font-size: 24px;
+    padding: 7px;
+}
+
+.ExtendedStockView{
+    margin: 80px 10px;
+}
+
+.ExtendedStockView .container{
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 50% 50%;
+}
+
+.ExtendedStockView .item{
+    border: 2px solid rgb(98, 78, 78);
+    background: rgba(137, 138, 140, 0.55);
+    margin: 3px;
+    padding: 34px;
+}
+
+.ExtendedStockView .daysQuery{
+    margin-left: 5%;
+    border-bottom: 2px solid #000000;
+    text-align: center;
+}
+
+.ExtendedStockView .queryType{
+    text-align: center;
+    display: inline-block;
+    margin-right: 10%;
+    font-size: 20px;
+}
+
+.ExtendedStockView .item:nth-child(3){
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.ExtendedStockView .companyDetails{
+    display: inline-block;
+    font-size: 35px;
+    padding: 14px;
+}
+
+.buyStock {
+    margin-top: 2%;
+    margin-left: 2%;
+    text-align: center;
+    color: #ffffff;
+    background-color: #6f6e6e;
+    font-size: 22px;
+    width: 200px;
+    padding: 6px 22px;
+    border-radius: 25px;
 }
 
 @media (max-width: 952px) {

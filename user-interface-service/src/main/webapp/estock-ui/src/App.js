@@ -6,6 +6,7 @@ import Welcome from "./component/Welcome";
 import SignIn from "./component/SignIn";
 import SignUp from "./component/SignUp";
 import DashBoard from "./component/Dashboard";
+import ExtendedStockView from "./component/ExtendedStockView";
 
 class App extends Component {
     render() {
@@ -20,6 +21,8 @@ class App extends Component {
                 <Route exact path="/HomePage" component={HomePage}>
                 </Route>
                 <Route exact path="/DashBoard" component={DashBoard}>
+                </Route>
+                <Route exact path="/ExtendedStockView" component={ExtendedStockView}>
                 </Route>
             </Router>
         )
