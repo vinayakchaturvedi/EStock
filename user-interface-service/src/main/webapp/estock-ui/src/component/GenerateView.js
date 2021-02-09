@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
+
 class GenerateView extends Component{
 
     constructor(props) {
@@ -13,9 +14,7 @@ class GenerateView extends Component{
             prevStockPrice: 0
         }
     }
-    async handleClick(){
-        alert("Buy stock");
-    }
+
 
 
     async componentDidMount() {
@@ -114,7 +113,13 @@ class GenerateView extends Component{
                     </div>
                 </div>
                 <div className="view-button">
-                    <button onClick={this.handleClick}>Buy Stock</button>
+
+                    <Link to={{
+                              pathname: "/BuyStock",
+                              stockName: this.state.stockName
+                          }}>
+                    <button >Buy Stock</button>
+                    </Link>
                 </div>
             </div>
         )
