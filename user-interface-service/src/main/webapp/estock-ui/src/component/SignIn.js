@@ -34,7 +34,10 @@ class SignIn extends Component {
         });
         let status = response.status;
         if (status === 200) {
-            this.props.history.push('/DashBoard');
+            this.props.history.push({
+                pathname: '/DashBoard',
+                customer: await response.json()
+            });
         } else {
             this.setState({
                 errorMessage: true
@@ -83,7 +86,8 @@ class SignIn extends Component {
                             value={this.state.password}
                             onChange={this.handleChange}
                         />
-                        <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Incorrect Username/Password</h3>
+                        <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Incorrect
+                            Username/Password</h3>
                         <button className="registerButton" disabled={!this.validateForm}>Sign in</button>
                     </form>
                 </div>

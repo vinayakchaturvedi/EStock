@@ -25,7 +25,6 @@ class ExtendedStockView extends Component {
     }
 
     async componentDidMount() {
-        console.log("Inside componentDidMount")
         this.setState({
             isLoading: true
         })

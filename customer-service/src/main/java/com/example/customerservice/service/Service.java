@@ -6,5 +6,5 @@ public interface Service {
 
     public Customer registerCustomer(final Customer customer);
 
-    public Customer validateLogin(final Customer customer);
+    public Customer validateAndRetrieveCustomer(final Customer customer, boolean requiredPassword);
 }
