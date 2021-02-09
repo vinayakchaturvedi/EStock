@@ -24,9 +24,32 @@ class SignUp extends Component {
         })
     }
 
-    handleSubmit(event) {
-        this.props.history.push('/DashBoard');
-        event.preventDefault()
+    async handleSubmit(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        let response = await fetch('/customer/registerCustomer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Accept': '*/*'
+            },
+
+            body: JSON.stringify({
+                customerName: this.state.firstName + " " + this.state.lastName,
+                password: this.state.password,
+                emailId: this.state.email,
+                contactNumber: this.state.contactNumber,
+            })
+        });
+        let status = response.status;
+        if (status === 200) {
+            this.props.history.push('/DashBoard');
+        } else {
+            this.setState({
+                errorMessage: true
+            })
+        }
     }
 
     render() {
