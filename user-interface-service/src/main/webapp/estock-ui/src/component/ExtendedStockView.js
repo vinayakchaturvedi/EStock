@@ -25,7 +25,6 @@ class ExtendedStockView extends Component {
     }
 
     async componentDidMount() {
-        console.log("Inside componentDidMount")
         this.setState({
             isLoading: true
         })
@@ -103,8 +102,8 @@ class ExtendedStockView extends Component {
                 datasets: [
                     {
                         label: this.state.companyReportQueryType,
-                        backgroundColor: 'rgb(227,139,65)',
-                        borderColor: 'rgb(0,99,132)',
+                        backgroundColor: 'rgb(40,103,219)',
+                        borderColor: 'rgb(226,122,17)',
                         data: yAxisData
                     }
                 ],
@@ -191,8 +190,8 @@ class ExtendedStockView extends Component {
                 datasets: [
                     {
                         label: "OPEN",
-                        backgroundColor: 'rgb(227,139,65)',
-                        borderColor: 'rgb(0,99,132)',
+                        backgroundColor: 'rgb(40,103,219)',
+                        borderColor: 'rgb(226,122,17)',
                         data: open
                     },
                     {

@@ -7,7 +7,8 @@ class SignIn extends Component {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            errorMessage: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,9 +16,33 @@ class SignIn extends Component {
         this.validateForm = this.validateForm.bind(this);
     }
 
-    handleSubmit(event) {
-        this.props.history.push('/DashBoard');
-        event.preventDefault()
+    async handleSubmit(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+
+        let response = await fetch('/customer/validateLogin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*'
+            },
+            body: JSON.stringify({
+                emailId: this.state.email,
+                password: this.state.password
+            })
+        });
+        let status = response.status;
+        if (status === 200) {
+            this.props.history.push({
+                pathname: '/DashBoard',
+                customer: await response.json()
+            });
+        } else {
+            this.setState({
+                errorMessage: true
+            })
+        }
     }
 
     handleChange = (event) => {
@@ -61,6 +86,8 @@ class SignIn extends Component {
                             value={this.state.password}
                             onChange={this.handleChange}
                         />
+                        <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Incorrect
+                            Username/Password</h3>
                         <button className="registerButton" disabled={!this.validateForm}>Sign in</button>
                     </form>
                 </div>

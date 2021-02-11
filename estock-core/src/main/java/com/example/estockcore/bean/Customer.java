@@ -11,29 +11,29 @@ public class Customer implements Cloneable {
     @Column(nullable = false)
     private String customerName;
     @Column(nullable = false)
-    private String userName;
-    @Column(nullable = false)
     private String password;
     @Column(nullable = false, unique = true)
     private String emailId;
     @Column(nullable = false, unique = true)
-    private Integer contactNumber = Integer.MAX_VALUE;
+    private String contactNumber;
+    @Column(nullable = false, unique = true)
+    private Long tradingAccount;
 
     public Customer() {
     }
 
     public Customer(Integer customerId,
                     String customerName,
-                    String userName,
                     String password,
                     String emailId,
-                    Integer contactNumber) {
+                    String contactNumber,
+                    Long tradingAccount) {
         this.customerId = customerId;
         this.customerName = customerName;
-        this.userName = userName;
         this.password = password;
         this.emailId = emailId;
         this.contactNumber = contactNumber;
+        this.tradingAccount = tradingAccount;
     }
 
     public Integer getCustomerId() {
@@ -52,14 +52,6 @@ public class Customer implements Cloneable {
         this.customerName = customerName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -76,12 +68,20 @@ public class Customer implements Cloneable {
         this.emailId = emailId;
     }
 
-    public Integer getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(Integer contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
+    }
+
+    public Long getTradingAccount() {
+        return tradingAccount;
+    }
+
+    public void setTradingAccount(Long tradingAccount) {
+        this.tradingAccount = tradingAccount;
     }
 
     @Override
@@ -89,10 +89,10 @@ public class Customer implements Cloneable {
         return "Customer{" +
                 "customerId=" + customerId +
                 ", customerName='" + customerName + '\'' +
-                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", emailId='" + emailId + '\'' +
-                ", contactNumber=" + contactNumber +
+                ", contactNumber='" + contactNumber + '\'' +
+                ", tradingAccount=" + tradingAccount +
                 '}';
     }
 
