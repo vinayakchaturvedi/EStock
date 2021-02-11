@@ -59,7 +59,7 @@ class GenerateGraph extends Component {
             let timeSeries = this.state.apiOutput["Time Series (5min)"]
             if (timeSeries.hasOwnProperty(curr.dateTimeFormat())) {
                 open.push(timeSeries[curr.dateTimeFormat()]["1. open"])
-                label.push(curr.dateTimeFormat().substr(11,5))
+                label.push(curr.dateTimeFormat().substr(11, 5))
             }
             iterator += 300000
         }
@@ -72,8 +72,8 @@ class GenerateGraph extends Component {
                 datasets: [
                     {
                         label: "Stock Price",
-                        backgroundColor: 'rgb(227,139,65)',
-                        borderColor: 'rgb(0,99,132)',
+                        backgroundColor: 'rgb(40,103,219)',
+                        borderColor: 'rgb(226,122,17)',
                         data: open
                     }
                 ],
