@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/customer-service/customer-service.iml" filepath="$PROJECT_DIR$/customer-service/customer-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/estock-core/estock-core.iml" filepath="$PROJECT_DIR$/estock-core/estock-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trade-booking/trade-booking.iml" filepath="$PROJECT_DIR$/trade-booking/trade-booking.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-interface-service/user-interface-service.iml" filepath="$PROJECT_DIR$/user-interface-service/user-interface-service.iml" />
     </modules>
   </component>

@@ -1,6 +1,8 @@
 package com.example.estockcore.bean;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Customer implements Cloneable {
@@ -12,14 +14,22 @@ public class Customer implements Cloneable {
     private String customerName;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String emailId;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String contactNumber;
     @Column(nullable = false, unique = true)
     private Long tradingAccount;
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Trade> tradeList;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Stock> stockList;
+
     public Customer() {
+        this.tradeList = new ArrayList<>();
+        this.stockList = new ArrayList<>();
     }
 
     public Customer(Integer customerId,
@@ -27,13 +37,17 @@ public class Customer implements Cloneable {
                     String password,
                     String emailId,
                     String contactNumber,
-                    Long tradingAccount) {
+                    Long tradingAccount,
+                    List<Trade> tradeList,
+                    List<Stock> stockList) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.password = password;
         this.emailId = emailId;
         this.contactNumber = contactNumber;
         this.tradingAccount = tradingAccount;
+        this.tradeList = new ArrayList<>();
+        this.stockList = new ArrayList<>();
     }
 
     public Integer getCustomerId() {
@@ -84,6 +98,22 @@ public class Customer implements Cloneable {
         this.tradingAccount = tradingAccount;
     }
 
+    public List<Trade> getTradeList() {
+        return tradeList;
+    }
+
+    public void setTradeList(List<Trade> tradeList) {
+        this.tradeList = tradeList;
+    }
+
+    public List<Stock> getStockList() {
+        return stockList;
+    }
+
+    public void setStockList(List<Stock> stockList) {
+        this.stockList = stockList;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -93,6 +123,8 @@ public class Customer implements Cloneable {
                 ", emailId='" + emailId + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +
                 ", tradingAccount=" + tradingAccount +
+                ", number of trades done=" + tradeList.size() +
+                ", number of stock owned=" + stockList.size() +
                 '}';
     }
 
@@ -102,6 +134,15 @@ public class Customer implements Cloneable {
 
     public Customer shallowCopy() throws CloneNotSupportedException {
         Customer clonedCustomer = (Customer) this.clone();
+        clonedCustomer.setTradeList(new ArrayList<>());
+        for (Trade trade : clonedCustomer.getTradeList()) {
+            clonedCustomer.getTradeList().add(trade.shallowCopy());
+        }
+
+        clonedCustomer.setStockList(new ArrayList<>());
+        for (Stock stock : clonedCustomer.getStockList()) {
+            clonedCustomer.getStockList().add(stock.shallowCopy());
+        }
 
         return clonedCustomer;
     }
