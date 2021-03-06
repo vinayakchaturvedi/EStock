@@ -328,6 +328,30 @@ a:hover {
     padding: 6px 22px;
     border-radius: 25px;
 }
+.buy-stock-page{
+    margin: 2%;
+    background: rgba(137, 138, 140, 0.55);
+    display: grid;
+}
+.buy-stock-page .buy-stock-container{
+
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+}
+
+.buy-stock-page button {
+    margin-top: 5px;
+    margin-left: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #6f6e6e;
+    font-size: 22px;
+    width: 120px;
+    padding: 6px 22px;
+    border-radius: 25px;
+}
 
 @media (max-width: 952px) {
     label.logo {
@@ -393,5 +417,7 @@ a:hover {
     .createAccountShort {
         display: block;
     }
+
+
 
 }

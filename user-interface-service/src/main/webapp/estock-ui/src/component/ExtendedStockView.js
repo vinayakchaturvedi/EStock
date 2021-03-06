@@ -22,6 +22,7 @@ class ExtendedStockView extends Component {
         this.showChart = this.showChart.bind(this)
         this.showStockChart = this.showStockChart.bind(this)
         this.showComparyReportChart = this.showComparyReportChart.bind(this)
+        this.handleClick=this.handleClick.bind(this)
     }
 
     async componentDidMount() {
@@ -237,6 +238,9 @@ class ExtendedStockView extends Component {
             stockTrendChart: currChart
         })
     }
+    handleClick(event){
+        console.log("Clicked")
+    }
 
     handleClickStockTrend(event) {
         const id = event.target.id
@@ -341,7 +345,7 @@ class ExtendedStockView extends Component {
                                 &nbsp; &nbsp; &darr;
                             </p>
                         </div>
-                        <button className="buyStock">Buy Stock</button>
+                        <button onClick={this.handleClick} className="buyStock">Buy Stock</button>
                     </div>
                 </div>
             </div>
