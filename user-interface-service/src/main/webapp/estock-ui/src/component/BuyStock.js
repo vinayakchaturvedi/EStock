@@ -40,11 +40,10 @@ class BuyStock extends React.Component {
         let status=response.status;
         if(status==200)
         {
-            alert("New Stock bought")
-            // this.props.history.push({
-            //     pathname:'/DashBoard',
-            //     trade: await response.json()
-            // })
+            this.props.history.push({
+                pathname:'/DashBoard',
+                trade: await response.json()
+            })
         }else {
             this.setState({
                 errorMessage: true
