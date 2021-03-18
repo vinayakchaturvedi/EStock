@@ -30,8 +30,8 @@ class Dashboard extends Component {
                 customer: JSON.parse(localStorage.getItem('customer'))
             }, () => this.updateCustomerName())
         } else {
-            localStorage.setItem('customer', JSON.stringify(this.state.customer));
-            this.updateCustomerName();
+            localStorage.setItem('customer', JSON.stringify(this.state.customer));  ///where // maybe because of this, even without logging in, my
+            this.updateCustomerName(); //name is still visible
         }
     }
 
@@ -43,7 +43,6 @@ class Dashboard extends Component {
 
     handleClick(event) {
         const {value} = event.target
-
         this.setState({
             isLoading: true,
             numberOfDays: value

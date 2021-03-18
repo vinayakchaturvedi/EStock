@@ -2,11 +2,11 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
 
-class GenerateView extends Component{
+class GenerateView extends Component {
 
     constructor(props) {
         super();
-        this.state= {
+        this.state = {
             stockName: props.name,
             isLoading: false,
             companyOverview: {},
@@ -14,7 +14,6 @@ class GenerateView extends Component{
             prevStockPrice: 0
         }
     }
-
 
 
     async componentDidMount() {
@@ -46,15 +45,14 @@ class GenerateView extends Component{
 
     // 4Z8RED01YJW9L47F
     render() {
-        const {isLoading}=this.state
-        if(!isLoading){
+        const {isLoading} = this.state
+        if (!isLoading) {
             return (
                 <div>Loading...</div>
             )
-        }
-        else
-        return(
-            <div className="stock-view-card">
+        } else
+            return (
+                <div className="stock-view-card">
 
 
                 <div>
@@ -114,15 +112,15 @@ class GenerateView extends Component{
                 </div>
                 <div className="view-button">
 
-                    <Link to={{
-                              pathname: "/BuyStock",
-                              stockName: this.state.stockName
-                          }}>
-                    <button >Buy Stock</button>
-                    </Link>
+                        <Link to={{
+                            pathname: "/BuyStock",
+                            stockName: this.state.stockName
+                        }}>
+                            <button>Buy Stock</button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        )
+            )
     }
 }
 
