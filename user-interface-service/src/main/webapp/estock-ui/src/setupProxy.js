@@ -15,5 +15,11 @@ module.exports = function(app) {
             changeOrigin: true,
         })
     );
-
+    app.use(
+        '/trade/book',
+        createProxyMiddleware({
+            target: 'http://localhost:8763/',
+            changeOrigin: true,
+        })
+    );
 };
