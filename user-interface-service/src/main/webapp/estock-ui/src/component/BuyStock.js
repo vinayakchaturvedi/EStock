@@ -14,14 +14,19 @@ class BuyStock extends React.Component {
             commission: 5,
             serialNumber: "#1234",
             accountNumber: "VSA4567",
+            customer: this.props.location.customer,
+            errorMessage: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.onBuyStock =this.onBuyStock.bind(this);
+        this.updateCustomerID = this.updateCustomerID.bind(this)
+        this.onSellStock = this.onSellStock.bind(this)
     }
     async onBuyStock(event){
         event.preventDefault();
         event.stopPropagation();
+
 
         let response= await fetch('/trade/book',{
             method:'POST',
@@ -30,7 +35,7 @@ class BuyStock extends React.Component {
                 'Accept': '*/*'
             },
             body: JSON.stringify({
-                customerId:1,
+                customerId:this.state.customerID,
                 stockName:this.state.stockName,
                 price:(this.state.currentStockPrice + this.state.commission) * this.state.quantity,
                 side: 'BUY',
@@ -51,6 +56,39 @@ class BuyStock extends React.Component {
         }
 
 
+    }
+
+    async onSellStock(event){
+        event.preventDefault();
+        event.stopPropagation();
+
+
+        let response= await fetch('/trade/book',{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*'
+            },
+            body: JSON.stringify({
+                customerId:this.state.customerID,
+                stockName:this.state.stockName,
+                price:(this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                side: 'SELL',
+                quantity:this.state.quantity
+            })
+        });
+        let status=response.status;
+        if(status==200)
+        {
+            this.props.history.push({
+                pathname:'/DashBoard',
+                trade: await response.json()
+            })
+        }else {
+            this.setState({
+                errorMessage: true
+            })
+        }
     }
 
     handleChange(event) {
@@ -90,6 +128,15 @@ class BuyStock extends React.Component {
             localStorage.setItem('stockName', JSON.stringify(this.state.stockName));
             this.callAPIs()
         }
+        if (this.state.customer === undefined) {
+            this.setState({
+                customer: JSON.parse(localStorage.getItem('customer'))
+            }, () => this.updateCustomerID())
+        } else {
+            localStorage.setItem('customer', JSON.stringify(this.state.customer));  ///where // maybe because of this, even without logging in, my
+            this.updateCustomerID(); //name is still visible
+        }
+
 
         // if (localStorage.getItem('prevStockPrice') === null) {
         //     this.setState({
@@ -101,6 +148,13 @@ class BuyStock extends React.Component {
         //     })
         // }
 
+    }
+
+    updateCustomerID() {
+        this.setState({
+            customerID: this.state.customer.customerId
+            // customerName: this.state.customer.customerId
+        })
     }
 
     render() {
@@ -131,6 +185,7 @@ class BuyStock extends React.Component {
                     <div className="stock-view-card">
                         <div ref={ref}>
                             <div>
+                                {/*<h3>Hello {this.state.customerID}</h3>*/}
                                 <h3 className="companyDetails"> Stock Name:</h3>
                                 <p className="companyDetails"> {this.state.stockName} </p>
                             </div>
@@ -166,12 +221,16 @@ class BuyStock extends React.Component {
                                 <p className="companyDetails">${netAmount}</p>
                             </div>
                         </div>
-                        <Pdf targetRef={ref} filename="code-example.pdf">
-                            {({toPdf}) => <button name="buy" onClick={toPdf}>Buy Stock</button>}
-                        </Pdf>
+                        {/*<Pdf targetRef={ref} filename="code-example.pdf">*/}
+                        {/*    {({toPdf}) => <button name="buy" onClick={toPdf}>Buy Stock</button>}*/}
+                        {/*</Pdf>*/}
                         <div>
                             <button name="buy2" onClick={this.onBuyStock}>BUY STOCK</button>
                         </div>
+                        <div>
+                            <button name="sell" onClick={this.onSellStock}>SELL STOCK</button>
+                        </div>
+                        <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Not Enough Stocks!</h3>
 
                     </div>
                 </div>

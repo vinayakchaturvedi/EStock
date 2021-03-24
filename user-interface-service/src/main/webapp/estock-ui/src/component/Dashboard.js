@@ -38,6 +38,7 @@ class Dashboard extends Component {
     updateCustomerName() {
         this.setState({
             customerName: this.state.customer.customerName
+            // customerName: this.state.customer.customerId
         })
     }
 
