@@ -58,6 +58,7 @@ class SignUp extends Component {
     render() {
         return (
             <div className="SignUp">
+                <body>
                 <div className="register">
                     <h1>Create an account</h1>
                     <p>Already have an account?<Link to="/SignIn"> Sign in</Link></p>
@@ -122,6 +123,7 @@ class SignUp extends Component {
                         <button className="registerButton">Register</button>
                     </form>
                 </div>
+                </body>
             </div>
         );
     }

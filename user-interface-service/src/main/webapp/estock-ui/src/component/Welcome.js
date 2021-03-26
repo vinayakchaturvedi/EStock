@@ -15,6 +15,7 @@ class Welcome extends Component {
     render() {
         return (
             <div className="Welcome">
+                <body>
                 <nav>
                     <input type="checkbox" id="check"/>
                     <label htmlFor="check" className="checkBtn">
@@ -36,6 +37,7 @@ class Welcome extends Component {
                         and decide the stock through which you can grow your wealth.</p>
                     <button onClick={this.handleSubmit} className="createAccount">Create Account ></button>
                 </div>
+                </body>
             </div>
         );
     }

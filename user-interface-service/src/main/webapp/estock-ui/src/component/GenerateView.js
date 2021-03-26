@@ -62,7 +62,7 @@ class GenerateView extends Component{
                     <Link to={{
                         pathname: "/ExtendedStockView",
                         stockName: this.state.stockName
-                    }}><h5 className="companyDetails">{this.state.companyOverview.Name}</h5></Link>
+                    }}><h5 style={{color: "#df9d23"}} className="companyDetails">{this.state.companyOverview.Name}</h5></Link>
                 </div>
                 <div>
                     <h5 className="companyDetails">Asset Type: </h5>
