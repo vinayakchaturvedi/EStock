@@ -44,7 +44,10 @@ class SignUp extends Component {
         });
         let status = response.status;
         if (status === 200) {
-            this.props.history.push('/DashBoard');
+            this.props.history.push({
+                pathname: '/DashBoard',
+                customer: await response.json()
+            });
         } else {
             this.setState({
                 errorMessage: true
