@@ -12,8 +12,6 @@ class BuyStock extends React.Component {
             //prevStockPrice: 0,
             quantity: 0,
             commission: 5,
-            serialNumber: "#1234",
-            accountNumber: "VSA4567",
             customer: this.props.location.customer,
             errorMessage: false
         }
@@ -46,7 +44,7 @@ class BuyStock extends React.Component {
         if(status==200)
         {
             this.props.history.push({
-                pathname:'/DashBoard',
+                pathname: this.handleClick,
                 trade: await response.json()
             })
         }else {
@@ -152,10 +150,11 @@ class BuyStock extends React.Component {
 
     updateCustomerID() {
         this.setState({
-            customerID: this.state.customer.customerId
-            // customerName: this.state.customer.customerId
+            customerID: this.state.customer.customerId,
+            tradingAccount : this.state.customer.tradingAccount
         })
     }
+
 
     render() {
         const date = new Date()
@@ -171,12 +170,8 @@ class BuyStock extends React.Component {
                 <div className="buy-stock-container">
                     <div className="stock-view-card">
                         <div>
-                            <h3 className="companyDetails"> Serial number:</h3>
-                            <p className="companyDetails">{this.state.serialNumber} </p>
-                        </div>
-                        <div>
                             <h3 className="companyDetails"> Account number:</h3>
-                            <p className="companyDetails">{this.state.accountNumber} </p>
+                            <p className="companyDetails">{ this.state.tradingAccount } </p>
                         </div>
 
                     </div>
@@ -221,9 +216,6 @@ class BuyStock extends React.Component {
                                 <p className="companyDetails">${netAmount}</p>
                             </div>
                         </div>
-                        {/*<Pdf targetRef={ref} filename="code-example.pdf">*/}
-                        {/*    {({toPdf}) => <button name="buy" onClick={toPdf}>Buy Stock</button>}*/}
-                        {/*</Pdf>*/}
                         <div>
                             <button name="buy2" onClick={this.onBuyStock}>BUY STOCK</button>
                         </div>
