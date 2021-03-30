@@ -12,13 +12,13 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.eslintcache
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-*.eslintcache
 
 ### NetBeans ###
 /nbproject/private/
