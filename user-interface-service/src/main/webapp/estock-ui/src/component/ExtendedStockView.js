@@ -103,7 +103,6 @@ class ExtendedStockView extends Component {
                 datasets: [
                     {
                         label: this.state.companyReportQueryType,
-                        backgroundColor: 'rgb(40,103,219)',
                         borderColor: 'rgb(226,122,17)',
                         data: yAxisData
                     }
@@ -112,25 +111,25 @@ class ExtendedStockView extends Component {
             options: {
                 legend: {
                     labels: {
-                        fontColor: 'rgb(0,0,0)',
+                        fontColor: 'rgb(255,255,255)',
                     }
                 },
                 title: {
                     display: true,
-                    fontColor: 'blue',
+                    fontColor: 'rgb(255,255,255)',
                     fontSize: 26,
                     text: this.state.companyOverview.Name + " Company Report",
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: 'rgb(0,0,0)',
+                            fontColor: 'rgb(255,255,255)',
                             fontSize: 16,
                         },
                     }],
                     xAxes: [{
                         ticks: {
-                            fontColor: 'rgb(0,0,0)',
+                            fontColor: 'rgb(255,255,255)',
                             fontSize: 16,
                         },
                     }]
@@ -191,13 +190,11 @@ class ExtendedStockView extends Component {
                 datasets: [
                     {
                         label: "OPEN",
-                        backgroundColor: 'rgb(40,103,219)',
                         borderColor: 'rgb(226,122,17)',
                         data: open
                     },
                     {
                         label: "CLOSE",
-                        backgroundColor: 'rgb(158,230,32)',
                         borderColor: 'rgb(237,9,59)',
                         data: close
                     }
@@ -206,25 +203,25 @@ class ExtendedStockView extends Component {
             options: {
                 legend: {
                     labels: {
-                        fontColor: 'rgb(0,0,0)',
+                        fontColor: 'rgb(255,255,255)',
                     }
                 },
                 title: {
                     display: true,
-                    fontColor: 'blue',
+                    fontColor: 'rgb(255,255,255)',
                     fontSize: 26,
                     text: this.state.companyOverview.Name + " Stock Trend",
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: 'rgb(0,0,0)',
+                            fontColor: 'rgb(255,255,255)',
                             fontSize: 16,
                         },
                     }],
                     xAxes: [{
                         ticks: {
-                            fontColor: 'rgb(0,0,0)',
+                            fontColor: 'rgb(255,255,255)',
                             fontSize: 16,
                         },
                     }]
@@ -295,31 +292,31 @@ class ExtendedStockView extends Component {
                     </div>
                     <div className="item">
                         <div>
-                            <h3 className="companyDetails">Name: </h3>
+                            <h5 className="companyDetails">Name: </h5>
                             <p className="companyDetails">{this.state.companyOverview.Name}</p>
                         </div>
                         <div>
-                            <h3 className="companyDetails">Asset Type: </h3>
+                            <h5 className="companyDetails">Asset Type: </h5>
                             <p className="companyDetails">{this.state.companyOverview.AssetType}</p>
                         </div>
                         <div>
-                            <h3 className="companyDetails">Stock Exchange: </h3>
+                            <h5 className="companyDetails">Stock Exchange: </h5>
                             <p className="companyDetails">{this.state.companyOverview.Exchange}</p>
                         </div>
                         <div>
-                            <h3 className="companyDetails">Currency: </h3>
+                            <h5 className="companyDetails">Currency: </h5>
                             <p className="companyDetails">{this.state.companyOverview.Currency}</p>
                         </div>
                         <div>
-                            <h3 className="companyDetails">Industry: </h3>
+                            <h5 className="companyDetails">Industry: </h5>
                             <p className="companyDetails">{this.state.companyOverview.Industry}</p>
                         </div>
                         <div>
-                            <h3 className="companyDetails">Country: </h3>
+                            <h5 className="companyDetails">Country: </h5>
                             <p className="companyDetails">{this.state.companyOverview.Country}</p>
                         </div>
                         <div>
-                            <h3 className="companyDetails">Current Stock Price: </h3>
+                            <h5 className="companyDetails">Current Stock Price: </h5>
                             <p
                                 className="companyDetails"
                                 style={{color: this.state.prevStockPrice === 0 || this.state.currentStockPrice - this.state.prevStockPrice > 0 ? "green" : "red"}}

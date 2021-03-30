@@ -1,7 +1,14 @@
 body {
-    background: url("background2.png") no-repeat fixed;
+    /*background: url("background1.png") no-repeat fixed;*/
     background-size: cover;
     height: calc(100vh - 80px);
+    background-color: rgb(10,38,59);
+}
+
+.Welcome body{
+    background: url("background1.png") no-repeat fixed;
+    background-size: cover;
+    height: calc(100vh - 0px);
 }
 
 * {
@@ -229,6 +236,11 @@ a:hover {
     margin-left: 30px;
 }
 
+.stock h1 {
+    color: #a79fe7;
+    font-size: 3em;
+}
+
 .stock button{
     margin-top: 5px;
     margin-left: 5px;
@@ -262,7 +274,7 @@ a:hover {
 }
 
 .GenerateView .item{
-    background: rgba(137, 138, 140, 0.55);
+    background: rgba(36, 40, 46, 0.55);
     margin: 3px;
     padding: 34px;
 }
@@ -286,7 +298,7 @@ a:hover {
 
 .ExtendedStockView .item{
     border: 2px solid rgb(98, 78, 78);
-    background: rgba(137, 138, 140, 0.55);
+    background: rgba(36, 40, 46, 0.55);
     margin: 3px;
     padding: 34px;
 }
@@ -302,6 +314,7 @@ a:hover {
     display: inline-block;
     margin-right: 10%;
     font-size: 20px;
+    color: #ffffff;
 }
 
 .ExtendedStockView .item:nth-child(3){
@@ -313,8 +326,24 @@ a:hover {
 
 .ExtendedStockView .companyDetails{
     display: inline-block;
-    font-size: 35px;
+    font-size: 25px;
     padding: 14px;
+}
+
+.stock-view-card h5{
+    color: #a38282;
+}
+
+.stock-view-card p{
+    color: white;
+}
+
+.ExtendedStockView h5{
+    color: #a38282;
+}
+
+.ExtendedStockView p{
+    color: white;
 }
 
 .buyStock {

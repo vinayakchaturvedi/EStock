@@ -15,6 +15,7 @@ class Welcome extends Component {
     render() {
         return (
             <div className="Welcome">
+                <body>
                 <nav>
                     <input type="checkbox" id="check"/>
                     <label htmlFor="check" className="checkBtn">
@@ -27,8 +28,6 @@ class Welcome extends Component {
                         <li><Link to="/SignIn">Services</Link></li>
                         <li><Link to="/SignIn">Contact</Link></li>
                         <li><Link to="/SignIn">Sign in</Link></li>
-                        <li><Link to="/Dashboard">Dashboard</Link></li>
-                        <li><Link to="/ExtendedStockView">ExtendedStockView</Link></li>
                         <li className="createAccountShort"><Link to="/SignUp">Create Account</Link></li>
                     </ul>
                 </nav>
@@ -38,6 +37,7 @@ class Welcome extends Component {
                         and decide the stock through which you can grow your wealth.</p>
                     <button onClick={this.handleSubmit} className="createAccount">Create Account ></button>
                 </div>
+                </body>
             </div>
         );
     }

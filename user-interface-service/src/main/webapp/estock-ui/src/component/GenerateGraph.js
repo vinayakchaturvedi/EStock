@@ -72,8 +72,7 @@ class GenerateGraph extends Component {
                 datasets: [
                     {
                         label: "Stock Price",
-                        backgroundColor: 'rgb(40,103,219)',
-                        borderColor: 'rgb(226,122,17)',
+                        borderColor: 'rgb(17,135,226)',
                         data: open
                     }
                 ],
@@ -81,25 +80,25 @@ class GenerateGraph extends Component {
             options: {
                 legend: {
                     labels: {
-                        fontColor: 'rgb(0,0,0)',
+                        fontColor: 'rgb(255,255,255)',
                     }
                 },
                 title: {
                     display: true,
-                    fontColor: 'blue',
+                    fontColor: 'rgb(255,255,255)',
                     fontSize: 20,
                     text: this.state.date,
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: 'rgb(0,0,0)',
+                            fontColor: 'rgb(255,255,255)',
                             fontSize: 16,
                         },
                     }],
                     xAxes: [{
                         ticks: {
-                            fontColor: 'rgb(0,0,0)',
+                            fontColor: 'rgb(255,255,255)',
                             fontSize: 16,
                         },
                     }]
