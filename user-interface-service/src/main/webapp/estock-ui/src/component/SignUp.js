@@ -48,10 +48,15 @@ class SignUp extends Component {
                 pathname: '/DashBoard',
                 customer: await response.json()
             });
-        } else {
+        } else if (status === 404) {
             this.setState({
                 errorMessage: true
             })
+        } else {
+            this.props.history.push({
+                pathname: '/Error404',
+                message: 'Backend server is down'
+            });
         }
     }
 

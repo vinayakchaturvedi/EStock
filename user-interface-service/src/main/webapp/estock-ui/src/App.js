@@ -8,6 +8,7 @@ import SignUp from "./component/SignUp";
 import DashBoard from "./component/Dashboard";
 import ExtendedStockView from "./component/ExtendedStockView";
 import BuyStock from "./component/BuyStock";
+import Error404 from "./component/Error404";
 
 class App extends Component {
     render() {
@@ -26,6 +27,8 @@ class App extends Component {
                 <Route exact path="/ExtendedStockView" component={ExtendedStockView}>
                 </Route>
                 <Route exact path="/BuyStock" component={BuyStock}>
+                </Route>
+                <Route exact path="/Error404" component={Error404}>
                 </Route>
             </Router>
         )
