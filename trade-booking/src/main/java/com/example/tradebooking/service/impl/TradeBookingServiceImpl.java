@@ -60,17 +60,19 @@ public class TradeBookingServiceImpl implements Service {
                 break;
             }
         }
-
+        //Stock not sold condition
         if (Side.SELL.equals(side) &&
                 (currTradedStock == null || currTradedStock.getTotalAvailableQuantity() < quantity)) {
             System.out.println(customerId + ConstantsAndMessages.NOT_ENOUGH_STOCKS);
             return null;
         }
 
+        //Create a new Stock
         if (currTradedStock == null) {
             currTradedStock = new Stock(stockName, customer);
         }
 
+        //Buying Stock Logic
         if (Side.BUY.equals(side)) {
             currTradedStock.setTotalAvailableQuantity(
                     currTradedStock.getTotalAvailableQuantity() + quantity);

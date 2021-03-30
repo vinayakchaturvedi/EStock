@@ -13,6 +13,7 @@ public class UserInterfaceServiceApplication {
         ConfigurableApplicationContext context = SpringApplication.run(UserInterfaceServiceApplication.class, args);
         LoadApiData loadApiData = context.getBean(LoadApiData.class);
         loadApiData.loadData();
+        //Demo Comment
     }
 
 }
