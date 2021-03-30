@@ -23,6 +23,7 @@ class ExtendedStockView extends Component {
         this.showStockChart = this.showStockChart.bind(this)
         this.showComparyReportChart = this.showComparyReportChart.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        //comment
     }
 
     async componentDidMount() {
