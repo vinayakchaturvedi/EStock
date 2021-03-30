@@ -227,11 +227,11 @@ a:hover {
     margin-top: 20px;
 }
 
-.stock .updateGraph{
+.stock .updateGraph {
     display: inline-block;
 }
 
-.stock h2{
+.stock h2 {
     margin-right: 80px;
     margin-left: 30px;
 }
@@ -252,12 +252,13 @@ a:hover {
     padding: 6px 22px;
     border-radius: 25px;
 }
-.stock-view-card{
+
+.stock-view-card {
     padding: 10px;
     margin: 20px;
 }
 
-.stock-view-card button{
+.stock-view-card button {
     color: #000000;
     font-size: 20px;
     width: 120px;
@@ -265,7 +266,7 @@ a:hover {
     float: inside;
 }
 
-.GenerateView .container{
+.GenerateView .container {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 1fr 1fr;
@@ -279,37 +280,37 @@ a:hover {
     padding: 34px;
 }
 
-.stock-view-card .companyDetails{
+.stock-view-card .companyDetails {
     display: inline-block;
     font-size: 24px;
     padding: 7px;
 }
 
-.ExtendedStockView{
+.ExtendedStockView {
     margin: 80px 10px;
 }
 
-.ExtendedStockView .container{
+.ExtendedStockView .container {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 3fr 2fr;
     grid-template-rows: 50% 50%;
 }
 
-.ExtendedStockView .item{
+.ExtendedStockView .item {
     border: 2px solid rgb(98, 78, 78);
     background: rgba(36, 40, 46, 0.55);
     margin: 3px;
     padding: 34px;
 }
 
-.ExtendedStockView .daysQuery{
+.ExtendedStockView .daysQuery {
     margin-left: 5%;
     border-bottom: 2px solid #000000;
     text-align: center;
 }
 
-.ExtendedStockView .queryType{
+.ExtendedStockView .queryType {
     text-align: center;
     display: inline-block;
     margin-right: 10%;
@@ -317,14 +318,14 @@ a:hover {
     color: #ffffff;
 }
 
-.ExtendedStockView .item:nth-child(3){
+.ExtendedStockView .item:nth-child(3) {
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 3;
 }
 
-.ExtendedStockView .companyDetails{
+.ExtendedStockView .companyDetails {
     display: inline-block;
     font-size: 25px;
     padding: 14px;
@@ -357,12 +358,14 @@ a:hover {
     padding: 6px 22px;
     border-radius: 25px;
 }
-.buy-stock-page{
+
+.buy-stock-page {
     margin: 2%;
     background: rgba(137, 138, 140, 0.55);
     display: grid;
 }
-.buy-stock-page .buy-stock-container{
+
+.buy-stock-page .buy-stock-container {
 
     display: grid;
     grid-gap: 1rem;
@@ -499,7 +502,6 @@ a:hover {
     .createAccountShort {
         display: block;
     }
-
 
 
 }

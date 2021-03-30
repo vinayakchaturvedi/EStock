@@ -20,7 +20,6 @@ class SignIn extends Component {
         event.preventDefault();
         event.stopPropagation();
 
-
         let response = await fetch('/customer/validateLogin', {
             method: 'POST',
             headers: {

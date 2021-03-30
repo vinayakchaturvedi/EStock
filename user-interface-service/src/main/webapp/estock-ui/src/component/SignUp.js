@@ -25,8 +25,8 @@ class SignUp extends Component {
     }
 
     async handleSubmit(event) {
-        event.preventDefault();
-        event.stopPropagation();
+        event.preventDefault(); //why
+        event.stopPropagation(); //why
 
         let response = await fetch('/customer/registerCustomer', {
             method: 'POST',

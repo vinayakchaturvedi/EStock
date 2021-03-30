@@ -22,7 +22,7 @@ class ExtendedStockView extends Component {
         this.showChart = this.showChart.bind(this)
         this.showStockChart = this.showStockChart.bind(this)
         this.showComparyReportChart = this.showComparyReportChart.bind(this)
-        this.handleClick=this.handleClick.bind(this)
+        this.handleClick = this.handleClick.bind(this)
     }
 
     async componentDidMount() {
@@ -235,7 +235,8 @@ class ExtendedStockView extends Component {
             stockTrendChart: currChart
         })
     }
-    handleClick(event){
+
+    handleClick(event) {
         console.log("Clicked")
     }
 
@@ -325,8 +326,9 @@ class ExtendedStockView extends Component {
                             </p>
                             <p
                                 className="companyDetails"
-                                style={{display: this.state.currentStockPrice - this.state.prevStockPrice > 0 ? "inline-block" : "none",
-                                    fontSize:"45px",
+                                style={{
+                                    display: this.state.currentStockPrice - this.state.prevStockPrice > 0 ? "inline-block" : "none",
+                                    fontSize: "45px",
                                     color: "green"
                                 }}
                             >
@@ -334,8 +336,9 @@ class ExtendedStockView extends Component {
                             </p>
                             <p
                                 className="companyDetails"
-                                style={{display: this.state.currentStockPrice - this.state.prevStockPrice < 0 ? "inline-block" : "none",
-                                    fontSize:"45px",
+                                style={{
+                                    display: this.state.currentStockPrice - this.state.prevStockPrice < 0 ? "inline-block" : "none",
+                                    fontSize: "45px",
                                     color: "red"
                                 }}
                             >
