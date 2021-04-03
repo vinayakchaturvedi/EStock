@@ -34,6 +34,7 @@ public class TradeBookingServiceImpl implements Service {
         Side side = request.get("side").textValue().equals("BUY") ? Side.BUY : Side.SELL;
         Long quantity = request.get("quantity").asLong();
         double netAmount = quantity * price + commission;
+        boolean isSettled=false;
 
         Customer customer = retrieveCustomerDAO.validateAndRetrieveCustomer(customerId);
         if (customer == null) {
@@ -48,6 +49,7 @@ public class TradeBookingServiceImpl implements Service {
                 price,
                 commission,
                 netAmount,
+                isSettled,
                 customer);
 
         Stock currTradedStock = null;
