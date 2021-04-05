@@ -14,6 +14,11 @@
         <module name="estock-core" />
         <module name="user-interface-service" />
       </profile>
+      <profile name="Annotation profile for Unknown" enabled="true">
+        <sourceOutputDir name="../../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="customer-service" target="1.8" />
@@ -22,6 +27,7 @@
       <module name="settlement-service" target="1.8" />
       <module name="trade-booking" target="1.8" />
       <module name="user-interface-service" target="1.8" />
+      <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
