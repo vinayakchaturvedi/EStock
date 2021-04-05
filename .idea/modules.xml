@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/trade-booking/trade-booking.iml" filepath="$PROJECT_DIR$/trade-booking/trade-booking.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-interface-service/user-interface-service.iml" filepath="$PROJECT_DIR$/user-interface-service/user-interface-service.iml" />
-    </modules>
+      <module fileurl="file://$PROJECT_DIR$/settlement-service/settlement-service.iml" filepath="$PROJECT_DIR$/settlement-service/settlement-service.iml" />
+</modules>
   </component>
 </project>

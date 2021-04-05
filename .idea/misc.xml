@@ -10,7 +10,8 @@
         <option value="$PROJECT_DIR$/customer-service/pom.xml" />
         <option value="$PROJECT_DIR$/estock-core/pom.xml" />
         <option value="$PROJECT_DIR$/user-interface-service/pom.xml" />
-        <option value="$PROJECT_DIR$/trade-booking/pom.xml" />
+	<option value="$PROJECT_DIR$/trade-booking/pom.xml" />
+	<option value="$PROJECT_DIR$/settlement-service/pom.xml" />
       </list>
     </option>
   </component>
