@@ -8,18 +8,26 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="trade-booking" />
+        <module name="settlement-service" />
         <module name="eureka-server" />
         <module name="customer-service" />
         <module name="estock-core" />
         <module name="user-interface-service" />
+      </profile>
+      <profile name="Annotation profile for Unknown" enabled="true">
+        <sourceOutputDir name="../../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="customer-service" target="1.8" />
       <module name="estock-core" target="1.8" />
       <module name="eureka-server" target="1.8" />
+      <module name="settlement-service" target="1.8" />
       <module name="trade-booking" target="1.8" />
       <module name="user-interface-service" target="1.8" />
+      <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -27,6 +35,7 @@
       <module name="customer-service" options="-parameters" />
       <module name="estock-core" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="settlement-service" options="-parameters" />
       <module name="trade-booking" options="-parameters" />
       <module name="user-interface-service" options="-parameters" />
     </option>
