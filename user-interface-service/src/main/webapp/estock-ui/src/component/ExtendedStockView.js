@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Chart} from "react-chartjs-2";
+import {Link} from "react-router-dom";
 
 class ExtendedStockView extends Component {
 
@@ -346,7 +347,13 @@ class ExtendedStockView extends Component {
                                 &nbsp; &nbsp; &darr;
                             </p>
                         </div>
-                        <button onClick={this.handleClick} className="buyStock">Buy Stock</button>
+                        <Link to={{
+                            pathname: "/BuyStock",
+                            stockName: this.state.stockName
+                        }}>
+
+                              <button className="buyStock">Buy Stock</button>
+                        </Link>
                     </div>
                 </div>
             </div>

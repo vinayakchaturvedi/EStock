@@ -52,7 +52,7 @@ public class SettleTrade implements DAO {
         }
 
     }
-    public boolean attempt(Trade settlement)
+    public boolean storeTrades(Trade settlement)
     {
         Session session = this.sessionFactory.getCurrentSession();
 
@@ -76,7 +76,7 @@ public class SettleTrade implements DAO {
                 if(today.isAfter(t.getSettlementDate()))
                 {
                     t.setSettled(true);
-                    attempt(t);
+                    storeTrades(t);
                 }
             }
         }
