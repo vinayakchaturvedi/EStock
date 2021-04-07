@@ -13,7 +13,6 @@ public class SettlementServiceApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(SettlementServiceApplication.class, args);
 		SettleTrade settleTrade = context.getBean(SettleTrade.class);
-		System.out.println("hi");
 		settleTrade.updateSettlement();
 
 
