@@ -55,7 +55,7 @@ class BuyStock extends React.Component {
                 price : this.state.currentStockPrice,
                 tradingDate : this.state.tradingDate,
                 quantity : this.state.quantity,
-                netAmount  :this.state.netAmount
+                netAmount  :(this.state.currentStockPrice + this.state.commission) * this.state.quantity
             })
 
         } else {
