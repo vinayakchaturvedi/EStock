@@ -70,27 +70,24 @@ class GeneratePDF extends React.Component{
     }
 
     handleClose(){
-        this.setState({
-            setOpen  :false
+        this.props.history.push({
+            pathname : "/Dashboard"
         })
     }
 
     MyDocument(stockName, tradingAccount, price, tradingDate, quantity, netAmount){
         return <Document>
             <Page size="A4">
-                <Link
-                    style={styles.title}
-                    src="https://es.wikipedia.org/wiki/Lorem_ipsum"
-                >
-                    Lorem Ipsum
-                </Link>
                 <View style={styles.body}>
                     <View style={styles.row}>
                         <Text style={styles.text}>
-                            Lorem ipsum dolor sit amet, consectetur, {stockName}, {price} {tradingAccount}, {tradingDate},
-                            {quantity}, {netAmount}
+                            StockName : {stockName} {"\n"}
+                            Trading Account : {tradingAccount} {"\n"}
+                            Price : {price} {"\n"}
+                            Trading Date : {tradingDate} {"\n"}
+                            Quantity : {quantity} {"\n"}
+                            Net Amount : {netAmount} {"\n"}
                         </Text>
-                        <View style={styles.fill1} />
                     </View>
                 </View>
             </Page>
@@ -98,12 +95,11 @@ class GeneratePDF extends React.Component{
     }
 
     render() {
+        const date = new Date()
+        const tradingDate = date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString()
         return (
 
             <div>
-                <div>
-                    {this.state.price}, {this.state.tradingDate}
-                </div>
                 <Dialog
                     open={true}
                     keepMounted
@@ -119,11 +115,11 @@ class GeneratePDF extends React.Component{
                     </DialogContent>
                     <DialogActions>
                         <PDFDownloadLink document={this.MyDocument(this.state.stockName,
-                            this.state.tradingAccount, this.state.price, this.state.tradingDate, this.state.quantity, this.state.netAmount)} fileName="somename.pdf">
+                            this.state.tradingAccount, this.state.price, tradingDate, this.state.quantity, this.state.netAmount)} fileName="Invoice.pdf">
                             {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
                         </PDFDownloadLink>
                         <Button onClick={this.handleClose} color="primary">
-                            Agree
+                            Back To DashBoard
                         </Button>
                     </DialogActions>
                 </Dialog>
