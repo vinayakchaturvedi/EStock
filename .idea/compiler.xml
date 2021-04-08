@@ -22,6 +22,7 @@
       <module name="settlement-service" target="1.8" />
       <module name="trade-booking" target="1.8" />
       <module name="user-interface-service" target="1.8" />
+      <module name="wrapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
