@@ -62,38 +62,55 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div className="SignUp">
-                <div className="register">
-                    <h1>Enter your Credentials</h1>
-                    <p>New at the portal?<Link to="/SignUp"> Sign Up</Link></p>
+            <div>
+                <div className="NAV">
+                    <nav>
+                        <input type="checkbox" id="check"/>
+                        <label htmlFor="check" className="checkBtn">
+                            <i className="fas fa-bars"/>
+                        </label>
+                        <label className="logo">EStock</label>
+                        <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/SignIn">About</Link></li>
+                            <li><Link to="/SignIn">Services</Link></li>
+                            <li><Link to="/SignIn">Contact</Link></li>
+                        </ul>
+                    </nav>
                 </div>
-                <div className="main">
-                    <form onSubmit={this.handleSubmit}>
-                        <h2 className="name">Email Address</h2>
-                        <input
-                            type="email"
-                            name="email"
-                            required="True"
-                            className="email"
-                            placeholder="Email address"
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                        />
-                        <br/>
-                        <h2 className="name">Password</h2>
-                        <input
-                            type="password"
-                            name="password"
-                            required="True"
-                            className="password"
-                            placeholder="Password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                        />
-                        <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Incorrect
-                            Username/Password</h3>
-                        <button className="registerButton" disabled={!this.validateForm}>Sign in</button>
-                    </form>
+                <div className="SignUp">
+                    <div className="register">
+                        <h1>Enter your Credentials</h1>
+                        <p>New at the portal?<Link to="/SignUp"> Sign Up</Link></p>
+                    </div>
+                    <div className="main">
+                        <form onSubmit={this.handleSubmit}>
+                            <h2 className="name">Email Address</h2>
+                            <input
+                                type="email"
+                                name="email"
+                                required="True"
+                                className="email"
+                                placeholder="Email address"
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                            />
+                            <br/>
+                            <h2 className="name">Password</h2>
+                            <input
+                                type="password"
+                                name="password"
+                                required="True"
+                                className="password"
+                                placeholder="Password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                            />
+                            <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Incorrect
+                                Username/Password</h3>
+                            <button className="registerButton" disabled={!this.validateForm}>Sign in</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         );

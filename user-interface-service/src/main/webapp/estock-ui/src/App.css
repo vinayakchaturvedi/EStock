@@ -2,10 +2,10 @@ body {
     /*background: url("background1.png") no-repeat fixed;*/
     background-size: cover;
     height: calc(100vh - 80px);
-    background-color: rgb(10,38,59);
+    background-color: rgb(10, 38, 59);
 }
 
-.Welcome body{
+.Welcome body {
     background: url("background1.png") no-repeat fixed;
     background-size: cover;
     height: calc(100vh - 0px);
@@ -48,6 +48,22 @@ nav ul li a {
     font-size: 26px;
     padding: 7px 14px;
     border-radius: 3px;
+}
+
+.NAV nav ul li a {
+    color: #ffffff;
+}
+
+.NAV nav label {
+    color: #ffffff;
+}
+
+.NAV nav{
+    border-bottom: 3px solid #ffffff;
+}
+
+.NAV a:hover {
+    color: #ee2b2b;
 }
 
 a:hover {
@@ -112,7 +128,7 @@ a:hover {
 .SignUp {
     position: absolute;
     right: 60px;
-    top: 20px;
+    top: 70px;
 }
 
 .SignUp .register {
@@ -241,7 +257,7 @@ a:hover {
     font-size: 3em;
 }
 
-.stock button{
+.stock button {
     margin-top: 5px;
     margin-left: 5px;
     text-align: center;
@@ -274,7 +290,7 @@ a:hover {
     left: -10%;
 }
 
-.GenerateView .item{
+.GenerateView .item {
     background: rgba(36, 40, 46, 0.55);
     margin: 3px;
     padding: 34px;
@@ -331,19 +347,19 @@ a:hover {
     padding: 14px;
 }
 
-.stock-view-card h5{
+.stock-view-card h5 {
     color: #a38282;
 }
 
-.stock-view-card p{
+.stock-view-card p {
     color: white;
 }
 
-.ExtendedStockView h5{
+.ExtendedStockView h5 {
     color: #a38282;
 }
 
-.ExtendedStockView p{
+.ExtendedStockView p {
     color: white;
 }
 
@@ -396,7 +412,7 @@ a:hover {
     color: #ffffff;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 11rem;
-    position:absolute;
+    position: absolute;
     left: 20%;
     top: 8%;
 }
@@ -413,7 +429,7 @@ a:hover {
     color: #ffffff;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 11rem;
-    position:absolute;
+    position: absolute;
     left: 68%;
     top: 8%;
 }
@@ -422,7 +438,7 @@ a:hover {
     text-align: center;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 1.6rem;
-    position:absolute;
+    position: absolute;
     left: 16%;
     top: 45%;
     width: 75%;
