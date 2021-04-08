@@ -1,5 +1,5 @@
 import React from "react";
-import Pdf from "react-to-pdf";
+import GeneratePDF from './GeneratePDF'
 
 class BuyStock extends React.Component {
     constructor(props) {
@@ -13,41 +13,52 @@ class BuyStock extends React.Component {
             quantity: 0,
             commission: 5,
             customer: this.props.location.customer,
-            errorMessage: false
+            errorMessage: false,
+            addModalShow : false,
+            open : false,
+            setOpen : false
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.onBuyStock =this.onBuyStock.bind(this);
+        this.onBuyStock = this.onBuyStock.bind(this);
         this.updateCustomerID = this.updateCustomerID.bind(this)
         this.onSellStock = this.onSellStock.bind(this)
     }
-    async onBuyStock(event){
+
+    async onBuyStock(event) {
         event.preventDefault();
         event.stopPropagation();
 
-
-        let response= await fetch('/trade/book',{
-            method:'POST',
+        let response = await fetch('/trade/book', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*'
             },
             body: JSON.stringify({
-                customerId:this.state.customerID,
-                stockName:this.state.stockName,
-                price:(this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                customerId: this.state.customerID,
+                stockName: this.state.stockName,
+                price: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
                 side: 'BUY',
-                quantity:this.state.quantity
+                quantity: this.state.quantity
             })
         });
-        let status=response.status;
-        if(status==200)
-        {
+        let status = response.status;
+
+        if (status == 200) {
             this.props.history.push({
-                pathname: this.handleClick,
-                trade: await response.json()
+                pathname: '/GeneratePDF',
+                trade: await response.json(),
+                open : this.state.open,
+                setOpen : this.state.setOpen,
+                stockName : this.state.stockName,
+                tradingAccount  :this.state.tradingAccount,
+                price : this.state.currentStockPrice,
+                tradingDate : this.state.tradingDate,
+                quantity : this.state.quantity,
+                netAmount  :(this.state.currentStockPrice + this.state.commission) * this.state.quantity
             })
-        }else {
+
+        } else {
             this.setState({
                 errorMessage: true
             })
@@ -56,33 +67,33 @@ class BuyStock extends React.Component {
 
     }
 
-    async onSellStock(event){
+    async onSellStock(event) {
         event.preventDefault();
         event.stopPropagation();
 
 
-        let response= await fetch('/trade/book',{
-            method:'POST',
+        let response = await fetch('/trade/book', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*'
             },
             body: JSON.stringify({
-                customerId:this.state.customerID,
-                stockName:this.state.stockName,
-                price:(this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                customerId: this.state.customerID,
+                stockName: this.state.stockName,
+                price: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
                 side: 'SELL',
-                quantity:this.state.quantity
+                quantity: this.state.quantity
             })
         });
-        let status=response.status;
-        if(status==200)
-        {
+        let status = response.status;
+        if (status === 200) {
+            console.log("Redirecting to generate PDF: ", this.state.stockName);
             this.props.history.push({
-                pathname:'/DashBoard',
+                pathname: '/GeneratePDF',
                 trade: await response.json()
             })
-        }else {
+        } else {
             this.setState({
                 errorMessage: true
             })
@@ -93,11 +104,6 @@ class BuyStock extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         })
-    }
-
-    handleClick(event) {
-        alert("Money money")
-
     }
 
     async callAPIs(event) {
@@ -135,23 +141,12 @@ class BuyStock extends React.Component {
             this.updateCustomerID(); //name is still visible
         }
 
-
-        // if (localStorage.getItem('prevStockPrice') === null) {
-        //     this.setState({
-        //         prevStockPrice: this.state.currentStockPrice
-        //     })
-        // } else {
-        //     this.setState({
-        //         prevStockPrice: JSON.parse(localStorage.getItem('prevStockPrice'))
-        //     })
-        // }
-
     }
 
     updateCustomerID() {
         this.setState({
             customerID: this.state.customer.customerId,
-            tradingAccount : this.state.customer.tradingAccount
+            tradingAccount: this.state.customer.tradingAccount
         })
     }
 
@@ -171,7 +166,7 @@ class BuyStock extends React.Component {
                     <div className="stock-view-card">
                         <div>
                             <h3 className="companyDetails"> Account number:</h3>
-                            <p className="companyDetails">{ this.state.tradingAccount } </p>
+                            <p className="companyDetails">{this.state.tradingAccount} </p>
                         </div>
 
                     </div>
@@ -217,7 +212,8 @@ class BuyStock extends React.Component {
                             </div>
                         </div>
                         <div>
-                            <button name="buy2" onClick={this.onBuyStock}>BUY STOCK</button>
+
+                                <button name="buy2" onClick={this.onBuyStock}>BUY STOCK</button>
                         </div>
                         <div>
                             <button name="sell" onClick={this.onSellStock}>SELL STOCK</button>

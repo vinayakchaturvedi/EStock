@@ -9,6 +9,7 @@ import DashBoard from "./component/Dashboard";
 import ExtendedStockView from "./component/ExtendedStockView";
 import BuyStock from "./component/BuyStock";
 import Error404 from "./component/Error404";
+import GeneratePDF from "./component/GeneratePDF"
 
 class App extends Component {
     render() {
@@ -29,6 +30,8 @@ class App extends Component {
                 <Route exact path="/BuyStock" component={BuyStock}>
                 </Route>
                 <Route exact path="/Error404" component={Error404}>
+                </Route>
+                <Route exact path = "/GeneratePDF" component={GeneratePDF}>
                 </Route>
             </Router>
         )

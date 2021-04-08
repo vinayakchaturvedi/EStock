@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="trade-booking" />
+        <module name="settlement-service" />
         <module name="eureka-server" />
         <module name="customer-service" />
         <module name="estock-core" />
@@ -18,6 +19,7 @@
       <module name="customer-service" target="1.8" />
       <module name="estock-core" target="1.8" />
       <module name="eureka-server" target="1.8" />
+      <module name="settlement-service" target="1.8" />
       <module name="trade-booking" target="1.8" />
       <module name="user-interface-service" target="1.8" />
     </bytecodeTargetLevel>
@@ -27,6 +29,7 @@
       <module name="customer-service" options="-parameters" />
       <module name="estock-core" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="settlement-service" options="-parameters" />
       <module name="trade-booking" options="-parameters" />
       <module name="user-interface-service" options="-parameters" />
     </option>

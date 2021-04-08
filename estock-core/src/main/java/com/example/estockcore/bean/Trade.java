@@ -29,6 +29,9 @@ public class Trade implements Cloneable {
     private double commission;
     @Column(nullable = false)
     private double netAmount;
+    @Column(columnDefinition = "boolean default false")
+    private boolean isSettled;
+
 
     @ManyToOne
     @JoinColumn(name = "customerId", nullable = false)
@@ -44,6 +47,7 @@ public class Trade implements Cloneable {
                  double price,
                  double commission,
                  double netAmount,
+                 boolean isSettled,
                  Customer customer) {
         this.tradeDate = tradeDate;
         this.settlementDate = settlementDate;
@@ -52,6 +56,7 @@ public class Trade implements Cloneable {
         this.price = price;
         this.commission = commission;
         this.netAmount = netAmount;
+        this.isSettled=isSettled;
         this.customer = customer;
     }
 
@@ -119,6 +124,10 @@ public class Trade implements Cloneable {
         this.netAmount = netAmount;
     }
 
+    public boolean isSettled() {return isSettled; }
+
+    public void setSettled(boolean settled) {isSettled = settled; }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -138,6 +147,7 @@ public class Trade implements Cloneable {
                 ", price=" + price +
                 ", commission=" + commission +
                 ", netAmount=" + netAmount +
+                ", isSettled=" + isSettled +
                 ", customer=" + customer.getCustomerId() + "-" + customer.getCustomerName() +
                 '}';
     }
