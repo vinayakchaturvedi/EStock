@@ -71,7 +71,7 @@ class SignIn extends Component {
                         </label>
                         <label className="logo">EStock</label>
                         <ul>
-                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/">Welcome</Link></li>
                             <li><Link to="/SignIn">About</Link></li>
                             <li><Link to="/SignIn">Services</Link></li>
                             <li><Link to="/SignIn">Contact</Link></li>

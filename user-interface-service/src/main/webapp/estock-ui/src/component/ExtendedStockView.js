@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Chart} from "react-chartjs-2";
+import {Link} from "react-router-dom";
 
 class ExtendedStockView extends Component {
 
@@ -23,6 +24,7 @@ class ExtendedStockView extends Component {
         this.showStockChart = this.showStockChart.bind(this)
         this.showComparyReportChart = this.showComparyReportChart.bind(this)
         this.handleClick = this.handleClick.bind(this)
+        this.logout = this.logout.bind(this);
     }
 
     async componentDidMount() {
@@ -41,6 +43,13 @@ class ExtendedStockView extends Component {
         }
 
         if (this.state.stockName === undefined) {
+            if (localStorage.getItem('customer') === null) {
+                this.props.history.push({
+                    pathname: '/Error404',
+                    message: 'Backend server is down'
+                });
+            }
+
             this.setState({
                 stockName: JSON.parse(localStorage.getItem('stockName'))
             }, () => this.showChart())
@@ -254,98 +263,122 @@ class ExtendedStockView extends Component {
         }, () => this.showComparyReportChart())
     }
 
+    logout() {
+        localStorage.removeItem('customer');
+    }
+
     render() {
         return (
-            <div className="ExtendedStockView">
-                <div className="container">
-                    <div className="item">
-                        <div className="daysQuery">
-                            <div className="queryType" onClick={this.handleClickStockTrend} id="5">5 Days</div>
-                            <div className="queryType" onClick={this.handleClickStockTrend} id="10">10 Days</div>
-                            <div className="queryType" onClick={this.handleClickStockTrend} id="30">1 Month</div>
-                            <div className="queryType" onClick={this.handleClickStockTrend} id="180">6 Months</div>
-                            <div className="queryType" onClick={this.handleClickStockTrend} id="365">1 Year</div>
-                            <div className="queryType" onClick={this.handleClickStockTrend} id="1825">5 Years</div>
-                        </div>
-                        <div style={{display: this.state.isLoading ? "none" : "block"}}>
-                            <canvas
-                                id={this.state.stockName + "stock_trend"}
-                            />
-                        </div>
-                    </div>
-                    <div className="item">
-                        <div className="daysQuery">
-                            <div className="queryType" onClick={this.handleClickCompanyReport} id="totalRevenue">Total
-                                Revenue
+            <div>
+                <div className="NAV">
+                    <nav>
+                        <input type="checkbox" id="check"/>
+                        <label htmlFor="check" className="checkBtn">
+                            <i className="fas fa-bars"/>
+                        </label>
+                        <label className="logo">EStock</label>
+                        <ul>
+                            <li><Link to="/Dashboard">Home</Link></li>
+                            <li><Link to="/SignIn">About</Link></li>
+                            <li><Link to="/SignIn">Services</Link></li>
+                            <li><Link to="/SignIn">Contact</Link></li>
+                            <li><Link to="/" onClick={this.logout}>Logout</Link></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div className="ExtendedStockView">
+                    <div className="container">
+                        <div className="item">
+                            <div className="daysQuery">
+                                <div className="queryType" onClick={this.handleClickStockTrend} id="5">5 Days</div>
+                                <div className="queryType" onClick={this.handleClickStockTrend} id="10">10 Days</div>
+                                <div className="queryType" onClick={this.handleClickStockTrend} id="30">1 Month</div>
+                                <div className="queryType" onClick={this.handleClickStockTrend} id="180">6 Months</div>
+                                <div className="queryType" onClick={this.handleClickStockTrend} id="365">1 Year</div>
+                                <div className="queryType" onClick={this.handleClickStockTrend} id="1825">5 Years</div>
                             </div>
-                            <div className="queryType" onClick={this.handleClickCompanyReport} id="grossProfit">Gross
-                                Profit
+                            <div style={{display: this.state.isLoading ? "none" : "block"}}>
+                                <canvas
+                                    id={this.state.stockName + "stock_trend"}
+                                />
                             </div>
-                            <div className="queryType" onClick={this.handleClickCompanyReport} id="netIncome">Net
-                                Income
+                        </div>
+                        <div className="item">
+                            <div className="daysQuery">
+                                <div className="queryType" onClick={this.handleClickCompanyReport}
+                                     id="totalRevenue">Total
+                                    Revenue
+                                </div>
+                                <div className="queryType" onClick={this.handleClickCompanyReport}
+                                     id="grossProfit">Gross
+                                    Profit
+                                </div>
+                                <div className="queryType" onClick={this.handleClickCompanyReport} id="netIncome">Net
+                                    Income
+                                </div>
+                            </div>
+                            <div style={{display: this.state.isLoading ? "none" : "block"}}>
+                                <canvas
+                                    id={this.state.stockName + "company_report"}
+                                />
                             </div>
                         </div>
-                        <div style={{display: this.state.isLoading ? "none" : "block"}}>
-                            <canvas
-                                id={this.state.stockName + "company_report"}
-                            />
+                        <div className="item">
+                            <div>
+                                <h5 className="companyDetails">Name: </h5>
+                                <p className="companyDetails">{this.state.companyOverview.Name}</p>
+                            </div>
+                            <div>
+                                <h5 className="companyDetails">Asset Type: </h5>
+                                <p className="companyDetails">{this.state.companyOverview.AssetType}</p>
+                            </div>
+                            <div>
+                                <h5 className="companyDetails">Stock Exchange: </h5>
+                                <p className="companyDetails">{this.state.companyOverview.Exchange}</p>
+                            </div>
+                            <div>
+                                <h5 className="companyDetails">Currency: </h5>
+                                <p className="companyDetails">{this.state.companyOverview.Currency}</p>
+                            </div>
+                            <div>
+                                <h5 className="companyDetails">Industry: </h5>
+                                <p className="companyDetails">{this.state.companyOverview.Industry}</p>
+                            </div>
+                            <div>
+                                <h5 className="companyDetails">Country: </h5>
+                                <p className="companyDetails">{this.state.companyOverview.Country}</p>
+                            </div>
+                            <div>
+                                <h5 className="companyDetails">Current Stock Price: </h5>
+                                <p
+                                    className="companyDetails"
+                                    style={{color: this.state.prevStockPrice === 0 || this.state.currentStockPrice - this.state.prevStockPrice > 0 ? "green" : "red"}}
+                                >
+                                    {this.state.currentStockPrice}
+                                </p>
+                                <p
+                                    className="companyDetails"
+                                    style={{
+                                        display: this.state.currentStockPrice - this.state.prevStockPrice > 0 ? "inline-block" : "none",
+                                        fontSize: "45px",
+                                        color: "green"
+                                    }}
+                                >
+                                    &nbsp; &nbsp; &uarr;
+                                </p>
+                                <p
+                                    className="companyDetails"
+                                    style={{
+                                        display: this.state.currentStockPrice - this.state.prevStockPrice < 0 ? "inline-block" : "none",
+                                        fontSize: "45px",
+                                        color: "red"
+                                    }}
+                                >
+                                    &nbsp; &nbsp; &darr;
+                                </p>
+                            </div>
+                            <button onClick={this.handleClick} className="buyStock">Buy Stock</button>
                         </div>
-                    </div>
-                    <div className="item">
-                        <div>
-                            <h5 className="companyDetails">Name: </h5>
-                            <p className="companyDetails">{this.state.companyOverview.Name}</p>
-                        </div>
-                        <div>
-                            <h5 className="companyDetails">Asset Type: </h5>
-                            <p className="companyDetails">{this.state.companyOverview.AssetType}</p>
-                        </div>
-                        <div>
-                            <h5 className="companyDetails">Stock Exchange: </h5>
-                            <p className="companyDetails">{this.state.companyOverview.Exchange}</p>
-                        </div>
-                        <div>
-                            <h5 className="companyDetails">Currency: </h5>
-                            <p className="companyDetails">{this.state.companyOverview.Currency}</p>
-                        </div>
-                        <div>
-                            <h5 className="companyDetails">Industry: </h5>
-                            <p className="companyDetails">{this.state.companyOverview.Industry}</p>
-                        </div>
-                        <div>
-                            <h5 className="companyDetails">Country: </h5>
-                            <p className="companyDetails">{this.state.companyOverview.Country}</p>
-                        </div>
-                        <div>
-                            <h5 className="companyDetails">Current Stock Price: </h5>
-                            <p
-                                className="companyDetails"
-                                style={{color: this.state.prevStockPrice === 0 || this.state.currentStockPrice - this.state.prevStockPrice > 0 ? "green" : "red"}}
-                            >
-                                {this.state.currentStockPrice}
-                            </p>
-                            <p
-                                className="companyDetails"
-                                style={{
-                                    display: this.state.currentStockPrice - this.state.prevStockPrice > 0 ? "inline-block" : "none",
-                                    fontSize: "45px",
-                                    color: "green"
-                                }}
-                            >
-                                &nbsp; &nbsp; &uarr;
-                            </p>
-                            <p
-                                className="companyDetails"
-                                style={{
-                                    display: this.state.currentStockPrice - this.state.prevStockPrice < 0 ? "inline-block" : "none",
-                                    fontSize: "45px",
-                                    color: "red"
-                                }}
-                            >
-                                &nbsp; &nbsp; &darr;
-                            </p>
-                        </div>
-                        <button onClick={this.handleClick} className="buyStock">Buy Stock</button>
                     </div>
                 </div>
             </div>
