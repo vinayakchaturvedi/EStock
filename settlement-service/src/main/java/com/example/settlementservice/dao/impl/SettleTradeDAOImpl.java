@@ -53,7 +53,7 @@ public class SettleTradeDAOImpl implements DAO {
         Session session = this.sessionFactory.getCurrentSession();
 
         try {
-            session.save(trade);
+            session.update(trade);
 
         } catch (Exception ex) {
             System.out.println("Error while storing stock and trade in db: " + ex.getMessage());
