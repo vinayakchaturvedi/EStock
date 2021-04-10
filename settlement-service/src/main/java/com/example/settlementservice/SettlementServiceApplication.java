@@ -1,6 +1,7 @@
 package com.example.settlementservice;
 
-import com.example.settlementservice.dao.impl.SettleTrade;
+import com.example.settlementservice.dao.impl.SettleTradeDAOImpl;
+import com.example.settlementservice.service.impl.SettleTradeServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -12,7 +13,7 @@ public class SettlementServiceApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(SettlementServiceApplication.class, args);
-		SettleTrade settleTrade = context.getBean(SettleTrade.class);
+		SettleTradeServiceImpl settleTrade = context.getBean(SettleTradeServiceImpl.class);
 		settleTrade.updateSettlement();
 
 
