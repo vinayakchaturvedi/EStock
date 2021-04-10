@@ -11,6 +11,6 @@ public interface SettleTrade {
     public void updateSettlement() throws IOException, MessagingException;
     public List<Trade>  retrieveTrade();
     public boolean storeTrades(Trade trade);
-    public void sendEmail(String email) throws AddressException, MessagingException, IOException;
+    public void sendEmail(Trade trade) throws AddressException, MessagingException, IOException;
 
 }

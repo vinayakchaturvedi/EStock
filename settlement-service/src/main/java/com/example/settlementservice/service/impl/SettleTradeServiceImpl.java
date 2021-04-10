@@ -39,8 +39,7 @@ public class SettleTradeServiceImpl implements SettleTrade {
             {
                 t.setSettled(true);
                 boolean stored = storeTrades(t);
-                String emailId  = t.getCustomer().getEmailId();
-                sendEmail(emailId);
+                sendEmail(t);
 
             }
         }
@@ -58,7 +57,7 @@ public class SettleTradeServiceImpl implements SettleTrade {
     }
 
     @Override
-    public void sendEmail(String email) throws AddressException, MessagingException, IOException {
+    public void sendEmail(Trade trade) throws AddressException, MessagingException, IOException {
         try{
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
@@ -71,18 +70,19 @@ public class SettleTradeServiceImpl implements SettleTrade {
                     return new PasswordAuthentication("estockiiitb@gmail.com", "estock123");
                 }
             });
+            String emailId  = trade.getCustomer().getEmailId();
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress("estockiiitb@gmail.com", false));
 
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailId));
             msg.setSubject("Confirmation for Trade Settlement");
             msg.setContent("Greetings ", "text/html");
             msg.setSentDate(new Date());
 
             MimeBodyPart messageBodyPart = new MimeBodyPart();
-            String text = "";
-            messageBodyPart.setContent("vinayak da best", "text/html");
-
+            String text = "Hello" + trade.getCustomer().getCustomerName() + " ,\nThank you for trading with EStock. We would like to inform you " +
+                    "that your stocks purchased on " + trade.getTradeDate() + " has now been settled. \n Please find the details of the purchase in the Invoice attached below.\nThank You, \nEStock";
+            messageBodyPart.setContent(text, "text/html");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
             msg.setContent(multipart);
