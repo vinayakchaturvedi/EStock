@@ -44,7 +44,7 @@ class BuyStock extends React.Component {
         });
         let status = response.status;
 
-        if (status == 200) {
+        if (status === 200) {
             this.props.history.push({
                 pathname: '/GeneratePDF',
                 trade: await response.json(),
@@ -55,7 +55,9 @@ class BuyStock extends React.Component {
                 price : this.state.currentStockPrice,
                 tradingDate : this.state.tradingDate,
                 quantity : this.state.quantity,
-                netAmount  :(this.state.currentStockPrice + this.state.commission) * this.state.quantity
+                netAmount  :(this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                side : 'BUY',
+                customer : this.state.customer
             })
 
         } else {
@@ -91,7 +93,16 @@ class BuyStock extends React.Component {
             console.log("Redirecting to generate PDF: ", this.state.stockName);
             this.props.history.push({
                 pathname: '/GeneratePDF',
-                trade: await response.json()
+                trade: await response.json(),
+                stockName : this.state.stockName,
+                tradingAccount  :this.state.tradingAccount,
+                price : this.state.currentStockPrice,
+                tradingDate : this.state.tradingDate,
+                quantity : this.state.quantity,
+                netAmount  :(this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                side : 'SELL',
+                customer : this.state.customer,
+                sellAmount : this.state.currentStockPrice * this.state.quantity
             })
         } else {
             this.setState({
@@ -158,7 +169,8 @@ class BuyStock extends React.Component {
         const tradingDate = date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString()
         const settlementDate = newDate.getDate().toString() + "-" + newDate.getMonth().toString() + "-" + newDate.getFullYear().toString()
         const netAmount = (this.state.currentStockPrice + this.state.commission) * this.state.quantity
-        const ref = React.createRef();
+        const ref = React.createRef()
+        const sellAmount = netAmount - (this.state.commission * this.state.quantity)
 
         return (
             <div className="buy-stock-page">
