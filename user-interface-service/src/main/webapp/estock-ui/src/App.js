@@ -10,6 +10,7 @@ import ExtendedStockView from "./component/ExtendedStockView";
 import BuyStock from "./component/BuyStock";
 import Error404 from "./component/Error404";
 import GeneratePDF from "./component/GeneratePDF"
+import UserProfile from "./component/UserProfile";
 
 class App extends Component {
     render() {
@@ -31,7 +32,9 @@ class App extends Component {
                 </Route>
                 <Route exact path="/Error404" component={Error404}>
                 </Route>
-                <Route exact path = "/GeneratePDF" component={GeneratePDF}>
+                <Route exact path="/GeneratePDF" component={GeneratePDF}>
+                </Route>
+                <Route exact path="/UserProfile" component={UserProfile}>
                 </Route>
             </Router>
         )

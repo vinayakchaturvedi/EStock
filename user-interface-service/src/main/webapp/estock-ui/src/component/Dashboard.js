@@ -102,6 +102,10 @@ class Dashboard extends Component {
                             <li><Link to="/SignIn">About</Link></li>
                             <li><Link to="/SignIn">Services</Link></li>
                             <li><Link to="/SignIn">Contact</Link></li>
+                            <li><Link to={{
+                                pathname: '/UserProfile',
+                                customer: this.state.customer
+                            }}>Profile</Link></li>
                             <li><Link to="/" onClick={this.logout}>Logout</Link></li>
                         </ul>
                     </nav>
