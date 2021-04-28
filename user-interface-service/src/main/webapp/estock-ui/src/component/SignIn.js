@@ -105,7 +105,7 @@ class SignIn extends Component {
                                 value={this.state.password}
                                 onChange={this.handleChange}
                             />
-                            <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Incorrect
+                            <h3 style={{display: this.state.errorMessage ? "block" : "none", color: "white"}}>Incorrect
                                 Username/Password</h3>
                             <button className="registerButton" disabled={!this.validateForm}>Sign in</button>
                         </form>
