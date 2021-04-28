@@ -1,5 +1,4 @@
 import React from "react";
-import GeneratePDF from './GeneratePDF'
 import {Link} from "react-router-dom";
 
 class BuyStock extends React.Component {
@@ -30,8 +29,8 @@ class BuyStock extends React.Component {
     async onBuyStock(event) {
         event.preventDefault();
         event.stopPropagation();
-        let amount=(this.state.currentStockPrice + this.state.commission) * this.state.quantity
-        amount=Math.round(amount*100)/100
+        let amount = (this.state.currentStockPrice + this.state.commission) * this.state.quantity
+        amount = Math.round(amount * 100) / 100
 
         let response = await fetch('/trade/book', {
             method: 'POST',
@@ -82,8 +81,8 @@ class BuyStock extends React.Component {
         event.preventDefault();
         event.stopPropagation();
 
-        let amount=this.state.currentStockPrice*this.state.quantity
-        amount=Math.round(amount*100)/100
+        let amount = this.state.currentStockPrice * this.state.quantity
+        amount = Math.round(amount * 100) / 100
         let response = await fetch('/trade/book', {
             method: 'POST',
             headers: {
@@ -112,7 +111,7 @@ class BuyStock extends React.Component {
                 netAmount: amount,
                 side: 'SELL',
                 customer: this.state.customer,
-                sellAmount: this.state.currentStockPrice * this.state.quantity
+                sellAmount: Math.round(this.state.currentStockPrice * this.state.quantity * 100.0) / 100.0
             })
         } else {
             this.setState({
@@ -187,10 +186,10 @@ class BuyStock extends React.Component {
         const tradingDate = date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString()
         const settlementDate = newDate.getDate().toString() + "-" + newDate.getMonth().toString() + "-" + newDate.getFullYear().toString()
         let netAmount = (this.state.currentStockPrice + this.state.commission) * this.state.quantity
-        netAmount=Math.round(netAmount*100)/100
+        netAmount = Math.round(netAmount * 100) / 100
         const ref = React.createRef()
         let sellAmount = netAmount - (this.state.commission * this.state.quantity)
-        sellAmount=Math.round(sellAmount*100)/100
+        sellAmount = Math.round(sellAmount * 100) / 100
 
         return (
             <div>
@@ -219,7 +218,7 @@ class BuyStock extends React.Component {
                                 <div>
                                     {/*<h3 className="companyDetails"> Stock Name:</h3>*/}
                                     <h1 className="companyDetails"
-                                        style={{color:"orange",fontSize:'30px'}}>
+                                        style={{color: "orange", fontSize: '30px'}}>
                                         {this.state.stockName}
                                     </h1>
                                 </div>
@@ -269,7 +268,8 @@ class BuyStock extends React.Component {
                                 <div>
                                     <button name="sell" onClick={this.onSellStock}>Sell Stock</button>
                                 </div>
-                                <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Not Enough Stocks!</h3>
+                                <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Not Enough
+                                    Stocks!</h3>
                             </div>
 
 
