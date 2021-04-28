@@ -598,7 +598,7 @@ button {
 }
 
 .About {
-    margin-top: 2%;
+    margin-top: 6%;
 }
 
 .About .container {
@@ -610,7 +610,6 @@ button {
 }
 
 .About .item {
-    background: rgba(159, 166, 175, 0.35);
     margin: 3px;
     padding: 34px;
 }
