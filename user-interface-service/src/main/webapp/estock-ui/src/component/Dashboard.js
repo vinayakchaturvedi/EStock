@@ -99,9 +99,8 @@ class Dashboard extends Component {
                         </label>
                         <label className="logo">EStock</label>
                         <ul>
-                            <li><Link to="/SignIn">About</Link></li>
-                            <li><Link to="/SignIn">Services</Link></li>
-                            <li><Link to="/SignIn">Contact</Link></li>
+                            <li><Link to="/About">About</Link></li>
+                            <li><Link to="/Contact">Contact</Link></li>
                             <li><Link to={{
                                 pathname: '/UserProfile',
                                 customer: this.state.customer

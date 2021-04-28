@@ -279,9 +279,8 @@ class ExtendedStockView extends Component {
                         <label className="logo">EStock</label>
                         <ul>
                             <li><Link to="/Dashboard">Home</Link></li>
-                            <li><Link to="/SignIn">About</Link></li>
-                            <li><Link to="/SignIn">Services</Link></li>
-                            <li><Link to="/SignIn">Contact</Link></li>
+                            <li><Link to="/About">About</Link></li>
+                            <li><Link to="/Contact">Contact</Link></li>
                             <li><Link to="/" onClick={this.logout}>Logout</Link></li>
                         </ul>
                     </nav>

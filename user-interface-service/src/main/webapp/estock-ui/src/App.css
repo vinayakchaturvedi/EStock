@@ -58,7 +58,7 @@ nav ul li a {
     color: #ffffff;
 }
 
-.NAV nav{
+.NAV nav {
     border-bottom: 3px solid #ffffff;
 }
 
@@ -220,7 +220,7 @@ a:hover {
     margin-left: 250px;
     text-align: center;
     color: #ffffff;
-    background-image: linear-gradient(to left,grey,darkslategrey);
+    background-image: linear-gradient(to left, grey, darkslategrey);
     background-color: #6f6e6e;
     font-size: 22px;
     width: 250px;
@@ -228,6 +228,7 @@ a:hover {
     padding: 6px 22px;
     border-radius: 25px;
 }
+
 .SignUp .registerButton:hover {
     background-color: white;
     border: white 2px solid;
@@ -268,14 +269,15 @@ a:hover {
     margin-left: 5px;
     text-align: center;
     color: #ffffff;
-    background-image: linear-gradient(to left,grey,darkslategrey);
-    border:solid #24282E 2px;
+    background-image: linear-gradient(to left, grey, darkslategrey);
+    border: solid #24282E 2px;
     font-size: 22px;
     width: 250px;
     padding: 6px 22px;
     border-radius: 25px;
 }
-.stock button:hover{
+
+.stock button:hover {
     border: solid white 2px;
 }
 
@@ -385,7 +387,8 @@ a:hover {
     padding: 6px 22px;
     border-radius: 25px;
 }
-.buy-stock-page input{
+
+.buy-stock-page input {
     background-color: #e3c6c6;
     border-radius: 15px;
 }
@@ -396,6 +399,7 @@ a:hover {
     background-size: cover;
     padding-bottom: 400px
 }
+
 .buy-stock-page h3 {
     width: fit-content;
     color: #8e8fc9;
@@ -410,27 +414,28 @@ a:hover {
     grid-template-columns: 1fr 1fr;
     position: relative;
 }
+
 .buy-stock-page button {
     margin-top: 15px;
     margin-left: 5px;
     text-align: center;
     height: 60px;
     font-family: KacstPen, fantasy;
-    background-image: linear-gradient(to right, violet , orange);
+    background-image: linear-gradient(to right, violet, orange);
     font-size: 22px;
     width: 310px;
     padding: 6px 22px;
     border-radius: 25px;
 }
-.buy-stock-page button:hover{
-    background-image: linear-gradient(to right, violet , orange);
+
+.buy-stock-page button:hover {
+    background-image: linear-gradient(to right, violet, orange);
     color: #deebf9;
     border: white solid 2px;
 }
-button{
-    border:transparent;
 
-
+button {
+    border: transparent;
 
 
 }
@@ -584,6 +589,59 @@ button{
     -webkit-box-shadow: 0 6px 6px -6px #0E1119;
     -moz-box-shadow: 0 6px 6px -6px #0E1119;
     box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.AboutContact body {
+    background: url("background2.png") no-repeat fixed;
+    background-size: cover;
+    height: calc(100vh - 0px);
+}
+
+.About {
+    margin-top: 2%;
+}
+
+.About .container {
+    margin-top: 2%;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100%;
+}
+
+.About .item {
+    background: rgba(159, 166, 175, 0.35);
+    margin: 3px;
+    padding: 34px;
+}
+
+.About h1 {
+    text-align: center;
+    color: #123342;
+}
+
+.About h2 {
+    text-align: center;
+    color: #2a1c1c;
+}
+
+.About p {
+    text-align: center;
+    color: #0c0c0c;
+    font-size: 150%;
+}
+
+.About img {
+    border-radius: 4px;
+    padding: 5px;
+    width: 50px;
+    align-content: center;
+}
+
+.About .contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 952px) {
