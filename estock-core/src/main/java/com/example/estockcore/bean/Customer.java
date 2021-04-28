@@ -135,12 +135,12 @@ public class Customer implements Cloneable {
     public Customer shallowCopy() throws CloneNotSupportedException {
         Customer clonedCustomer = (Customer) this.clone();
         clonedCustomer.setTradeList(new ArrayList<>());
-        for (Trade trade : clonedCustomer.getTradeList()) {
+        for (Trade trade : this.getTradeList()) {
             clonedCustomer.getTradeList().add(trade.shallowCopy());
         }
 
         clonedCustomer.setStockList(new ArrayList<>());
-        for (Stock stock : clonedCustomer.getStockList()) {
+        for (Stock stock : this.getStockList()) {
             clonedCustomer.getStockList().add(stock.shallowCopy());
         }
 

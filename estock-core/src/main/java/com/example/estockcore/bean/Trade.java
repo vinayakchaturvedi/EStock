@@ -53,10 +53,10 @@ public class Trade implements Cloneable {
         this.settlementDate = settlementDate;
         Side = side;
         this.quantity = quantity;
-        this.price = price;
+        this.price = Math.round(price * 100.0) / 100.0;
         this.commission = commission;
-        this.netAmount = netAmount;
-        this.isSettled=isSettled;
+        this.netAmount = Math.round(netAmount * 100.0) / 100.0;
+        this.isSettled = isSettled;
         this.customer = customer;
     }
 
@@ -105,7 +105,7 @@ public class Trade implements Cloneable {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = Math.round(price * 100.0) / 100.0;
     }
 
     public double getCommission() {
@@ -121,12 +121,16 @@ public class Trade implements Cloneable {
     }
 
     public void setNetAmount(double netAmount) {
-        this.netAmount = netAmount;
+        this.netAmount = Math.round(netAmount * 100.0) / 100.0;
     }
 
-    public boolean isSettled() {return isSettled; }
+    public boolean isSettled() {
+        return isSettled;
+    }
 
-    public void setSettled(boolean settled) {isSettled = settled; }
+    public void setSettled(boolean settled) {
+        isSettled = settled;
+    }
 
     public Customer getCustomer() {
         return customer;
