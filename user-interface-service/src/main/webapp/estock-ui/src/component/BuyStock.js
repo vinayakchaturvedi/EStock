@@ -10,14 +10,14 @@ class BuyStock extends React.Component {
             companyOverview: {},
             currentStockPrice: 0,
             //prevStockPrice: 0,
-            quantity: 0,
+            quantity: 1,
             commission: 5,
             customer: this.props.location.customer,
             errorMessage: false,
             addModalShow: false,
             open: false,
             setOpen: false,
-            apiOutput: {}
+            apiOutput: {},
         }
         this.handleChange = this.handleChange.bind(this)
         this.onBuyStock = this.onBuyStock.bind(this);
@@ -28,6 +28,8 @@ class BuyStock extends React.Component {
     async onBuyStock(event) {
         event.preventDefault();
         event.stopPropagation();
+        let amount=(this.state.currentStockPrice + this.state.commission) * this.state.quantity
+        amount=Math.round(amount*100)/100
 
         let response = await fetch('/trade/book', {
             method: 'POST',
@@ -38,7 +40,7 @@ class BuyStock extends React.Component {
             body: JSON.stringify({
                 customerId: this.state.customerID,
                 stockName: this.state.stockName,
-                price: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                price: amount,
                 side: 'BUY',
                 quantity: this.state.quantity
             })
@@ -56,7 +58,7 @@ class BuyStock extends React.Component {
                 price: this.state.currentStockPrice,
                 tradingDate: this.state.tradingDate,
                 quantity: this.state.quantity,
-                netAmount: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                netAmount: amount,
                 side: 'BUY',
                 customer: this.state.customer
             })
@@ -74,7 +76,8 @@ class BuyStock extends React.Component {
         event.preventDefault();
         event.stopPropagation();
 
-
+        let amount=this.state.currentStockPrice*this.state.quantity
+        amount=Math.round(amount*100)/100
         let response = await fetch('/trade/book', {
             method: 'POST',
             headers: {
@@ -84,7 +87,7 @@ class BuyStock extends React.Component {
             body: JSON.stringify({
                 customerId: this.state.customerID,
                 stockName: this.state.stockName,
-                price: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                price: amount,
                 side: 'SELL',
                 quantity: this.state.quantity
             })
@@ -100,7 +103,7 @@ class BuyStock extends React.Component {
                 price: this.state.currentStockPrice,
                 tradingDate: this.state.tradingDate,
                 quantity: this.state.quantity,
-                netAmount: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                netAmount: amount,
                 side: 'SELL',
                 customer: this.state.customer,
                 sellAmount: this.state.currentStockPrice * this.state.quantity
@@ -127,7 +130,7 @@ class BuyStock extends React.Component {
 
         this.setState({
                 companyOverview: await require('../data_and_config/Company_Overview/' + this.state.stockName + '.json'),
-                isLoading: true
+                isLoading: true,
             }
         )
 
@@ -170,9 +173,11 @@ class BuyStock extends React.Component {
         const newDate = new Date(extendedTime);
         const tradingDate = date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString()
         const settlementDate = newDate.getDate().toString() + "-" + newDate.getMonth().toString() + "-" + newDate.getFullYear().toString()
-        const netAmount = (this.state.currentStockPrice + this.state.commission) * this.state.quantity
+        let netAmount = (this.state.currentStockPrice + this.state.commission) * this.state.quantity
+        netAmount=Math.round(netAmount*100)/100
         const ref = React.createRef()
-        const sellAmount = netAmount - (this.state.commission * this.state.quantity)
+        let sellAmount = netAmount - (this.state.commission * this.state.quantity)
+        sellAmount=Math.round(sellAmount*100)/100
 
         return (
             <div>
@@ -222,6 +227,10 @@ class BuyStock extends React.Component {
                                 <div>
                                     <h3 className="companyDetails">Net Amount: </h3>
                                     <p className="companyDetails">${netAmount}</p>
+                                </div>
+                                <div>
+                                    <h3 className="companyDetails">Net Selling Amount: </h3>
+                                    <p className="companyDetails">${sellAmount}</p>
                                 </div>
                                 <div>
                                     <button name="buy2" onClick={this.onBuyStock}>Buy Stock</button>

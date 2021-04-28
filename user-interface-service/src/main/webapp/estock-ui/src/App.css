@@ -220,11 +220,17 @@ a:hover {
     margin-left: 250px;
     text-align: center;
     color: #ffffff;
+    background-image: linear-gradient(to left,grey,darkslategrey);
     background-color: #6f6e6e;
     font-size: 22px;
-    width: 120px;
+    width: 250px;
+    line-height: 40px;
     padding: 6px 22px;
     border-radius: 25px;
+}
+.SignUp .registerButton:hover {
+    background-color: white;
+    border: white 2px solid;
 }
 
 .SignUp a {
@@ -262,11 +268,15 @@ a:hover {
     margin-left: 5px;
     text-align: center;
     color: #ffffff;
-    background-color: #6f6e6e;
+    background-image: linear-gradient(to left,grey,darkslategrey);
+    border:solid #24282E 2px;
     font-size: 22px;
-    width: 120px;
+    width: 250px;
     padding: 6px 22px;
     border-radius: 25px;
+}
+.stock button:hover{
+    border: solid white 2px;
 }
 
 .stock-view-card {
@@ -275,16 +285,17 @@ a:hover {
 }
 
 .stock-view-card button {
-    color: #000000;
+    color: white;
     font-size: 20px;
-    width: 120px;
+    width: 250px;
+    line-height: 40px;
     padding: 6px 22px;
     float: inside;
 }
 
 .GenerateView .container {
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: 2rem;
     grid-template-columns: 1fr 1fr;
     position: relative;
     left: -10%;
@@ -403,7 +414,6 @@ a:hover {
     margin-top: 15px;
     margin-left: 5px;
     text-align: center;
-    color: gray();
     height: 60px;
     font-family: KacstPen, fantasy;
     background-image: linear-gradient(to right, violet , orange);
@@ -415,6 +425,14 @@ a:hover {
 .buy-stock-page button:hover{
     background-image: linear-gradient(to right, violet , orange);
     color: #deebf9;
+    border: white solid 2px;
+}
+button{
+    border:transparent;
+
+
+
+
 }
 
 .Error404 .mainBox {

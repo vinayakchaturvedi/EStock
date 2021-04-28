@@ -223,13 +223,13 @@ class GeneratePDF extends React.Component{
                         <DialogTitle id="alert-dialog-slide-title">{"Stocks have been purchased!"}</DialogTitle>
                         <DialogContent>
                             <DialogContentText id="alert-dialog-slide-description">
-                                The purchase has been completed. Kindly click on the link to download the invoice!
+                                The transaction has been completed. Kindly click on the link to download the invoice!
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
                             <PDFDownloadLink document={this.MyDocumentBuy(this.state.stockName,
                                 this.state.tradingAccount, this.state.price, tradingDate , settlementDate,  this.state.quantity, this.state.netAmount)} fileName="Invoice.pdf">
-                                {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+                                {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now')}
                             </PDFDownloadLink>
                             <Button onClick={this.handleClose} color="primary">
                                 Back To DashBoard
