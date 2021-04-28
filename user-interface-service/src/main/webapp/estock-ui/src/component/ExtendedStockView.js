@@ -377,7 +377,6 @@ class ExtendedStockView extends Component {
                                     &nbsp; &nbsp; &darr;
                                 </p>
                             </div>
-                            <button onClick={this.handleClick} className="buyStock">Buy Stock</button>
                         </div>
                     </div>
                 </div>

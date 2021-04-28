@@ -10,13 +10,14 @@ class BuyStock extends React.Component {
             companyOverview: {},
             currentStockPrice: 0,
             //prevStockPrice: 0,
-            quantity: 0,
+            quantity: 1,
             commission: 5,
             customer: this.props.location.customer,
             errorMessage: false,
-            addModalShow : false,
-            open : false,
-            setOpen : false
+            addModalShow: false,
+            open: false,
+            setOpen: false,
+            apiOutput: {},
         }
         this.handleChange = this.handleChange.bind(this)
         this.onBuyStock = this.onBuyStock.bind(this);
@@ -27,6 +28,8 @@ class BuyStock extends React.Component {
     async onBuyStock(event) {
         event.preventDefault();
         event.stopPropagation();
+        let amount=(this.state.currentStockPrice + this.state.commission) * this.state.quantity
+        amount=Math.round(amount*100)/100
 
         let response = await fetch('/trade/book', {
             method: 'POST',
@@ -37,25 +40,27 @@ class BuyStock extends React.Component {
             body: JSON.stringify({
                 customerId: this.state.customerID,
                 stockName: this.state.stockName,
-                price: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                price: amount,
                 side: 'BUY',
                 quantity: this.state.quantity
             })
         });
         let status = response.status;
 
-        if (status == 200) {
+        if (status === 200) {
             this.props.history.push({
                 pathname: '/GeneratePDF',
                 trade: await response.json(),
-                open : this.state.open,
-                setOpen : this.state.setOpen,
-                stockName : this.state.stockName,
-                tradingAccount  :this.state.tradingAccount,
-                price : this.state.currentStockPrice,
-                tradingDate : this.state.tradingDate,
-                quantity : this.state.quantity,
-                netAmount  :(this.state.currentStockPrice + this.state.commission) * this.state.quantity
+                open: this.state.open,
+                setOpen: this.state.setOpen,
+                stockName: this.state.stockName,
+                tradingAccount: this.state.tradingAccount,
+                price: this.state.currentStockPrice,
+                tradingDate: this.state.tradingDate,
+                quantity: this.state.quantity,
+                netAmount: amount,
+                side: 'BUY',
+                customer: this.state.customer
             })
 
         } else {
@@ -71,7 +76,8 @@ class BuyStock extends React.Component {
         event.preventDefault();
         event.stopPropagation();
 
-
+        let amount=this.state.currentStockPrice*this.state.quantity
+        amount=Math.round(amount*100)/100
         let response = await fetch('/trade/book', {
             method: 'POST',
             headers: {
@@ -81,7 +87,7 @@ class BuyStock extends React.Component {
             body: JSON.stringify({
                 customerId: this.state.customerID,
                 stockName: this.state.stockName,
-                price: (this.state.currentStockPrice + this.state.commission) * this.state.quantity,
+                price: amount,
                 side: 'SELL',
                 quantity: this.state.quantity
             })
@@ -91,7 +97,16 @@ class BuyStock extends React.Component {
             console.log("Redirecting to generate PDF: ", this.state.stockName);
             this.props.history.push({
                 pathname: '/GeneratePDF',
-                trade: await response.json()
+                trade: await response.json(),
+                stockName: this.state.stockName,
+                tradingAccount: this.state.tradingAccount,
+                price: this.state.currentStockPrice,
+                tradingDate: this.state.tradingDate,
+                quantity: this.state.quantity,
+                netAmount: amount,
+                side: 'SELL',
+                customer: this.state.customer,
+                sellAmount: this.state.currentStockPrice * this.state.quantity
             })
         } else {
             this.setState({
@@ -109,12 +124,13 @@ class BuyStock extends React.Component {
     async callAPIs(event) {
         this.setState({
             currentStockPrice: await require('../data_and_config/CurrentDay/' + this.state.stockName + '.json').c,
+            apiOutput: await require('../data_and_config/Company_Overview/' + this.state.stockName + '.json'),
             isLoading: true
         })
 
         this.setState({
                 companyOverview: await require('../data_and_config/Company_Overview/' + this.state.stockName + '.json'),
-                isLoading: true
+                isLoading: true,
             }
         )
 
@@ -157,71 +173,79 @@ class BuyStock extends React.Component {
         const newDate = new Date(extendedTime);
         const tradingDate = date.getDate().toString() + "-" + date.getMonth().toString() + "-" + date.getFullYear().toString()
         const settlementDate = newDate.getDate().toString() + "-" + newDate.getMonth().toString() + "-" + newDate.getFullYear().toString()
-        const netAmount = (this.state.currentStockPrice + this.state.commission) * this.state.quantity
-        const ref = React.createRef();
+        let netAmount = (this.state.currentStockPrice + this.state.commission) * this.state.quantity
+        netAmount=Math.round(netAmount*100)/100
+        const ref = React.createRef()
+        let sellAmount = netAmount - (this.state.commission * this.state.quantity)
+        sellAmount=Math.round(sellAmount*100)/100
 
         return (
-            <div className="buy-stock-page">
-                <div className="buy-stock-container">
-                    <div className="stock-view-card">
-                        <div>
-                            <h3 className="companyDetails"> Account number:</h3>
-                            <p className="companyDetails">{this.state.tradingAccount} </p>
-                        </div>
+            <div>
+                <div className="buy-stock-page">
+                    <div className="buy-stock-contain">
+                        <div className="stock-view-card">
+                            <div ref={ref}>
+                                <div>
+                                    {/*<h3 className="companyDetails"> Stock Name:</h3>*/}
+                                    <h1 className="companyDetails"
+                                        style={{color:"orange",fontSize:'30px'}}>
+                                        {this.state.stockName}
+                                    </h1>
+                                </div>
+                                <div className="test">
+                                    <h3 className="companyDetails"> Account number:</h3>
+                                    <p className="companyDetails">{this.state.tradingAccount} </p>
+                                </div>
 
+                                <div>
+                                    <h3 className="companyDetails"> Price :</h3>
+                                    <p className="companyDetails">{this.state.currentStockPrice}</p>
+                                </div>
+                                <div>
+                                    <h3 className="companyDetails"> Trading Date:</h3>
+                                    <p className="companyDetails">{tradingDate}</p>
+                                </div>
+                                <div>
+                                    <h3 className="companyDetails"> Settlement Date:</h3>
+                                    <p className="companyDetails">{settlementDate}</p>
+                                </div>
+                                <div>
+                                    <h3 className="companyDetails"> Quantity:</h3>
+                                    <input
+                                        className="companyDetails"
+                                        type="number" name="quantity"
+                                        defaultValue={1}
+                                        min={1}
+                                        onChange={this.handleChange}
+                                        style={{blockSize: "1%", width: "10%"}}
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="companyDetails">Commission:</h3>
+                                    <p className="companyDetails">${this.state.commission} per share</p>
+                                </div>
+                                <div>
+                                    <h3 className="companyDetails">Net Amount: </h3>
+                                    <p className="companyDetails">${netAmount}</p>
+                                </div>
+                                <div>
+                                    <h3 className="companyDetails">Net Selling Amount: </h3>
+                                    <p className="companyDetails">${sellAmount}</p>
+                                </div>
+                                <div>
+                                    <button name="buy2" onClick={this.onBuyStock}>Buy Stock</button>
+                                </div>
+                                <div>
+                                    <button name="sell" onClick={this.onSellStock}>Sell Stock</button>
+                                </div>
+                                <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Not Enough Stocks!</h3>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
-                <div className="buy-stock-container">
-                    <div className="stock-view-card">
-                        <div ref={ref}>
-                            <div>
-                                {/*<h3>Hello {this.state.customerID}</h3>*/}
-                                <h3 className="companyDetails"> Stock Name:</h3>
-                                <p className="companyDetails"> {this.state.stockName} </p>
-                            </div>
-                            <div>
-                                <h3 className="companyDetails"> Price :</h3>
-                                <p className="companyDetails">{this.state.currentStockPrice}</p>
-                            </div>
-                            <div>
-                                <h3 className="companyDetails"> Trading Date:</h3>
-                                <p className="companyDetails">{tradingDate}</p>
-                            </div>
-                            <div>
-                                <h3 className="companyDetails"> Settlement Date:</h3>
-                                <p className="companyDetails">{settlementDate}</p>
-                            </div>
-                            <div>
-                                <h3 className="companyDetails"> Quantity:</h3>
-                                <input
-                                    className="companyDetails"
-                                    type="number" name="quantity"
-                                    defaultValue={0}
-                                    min={0}
-                                    onChange={this.handleChange}
-                                    style={{blockSize: "1%", width: "10%"}}
-                                />
-                            </div>
-                            <div>
-                                <h3 className="companyDetails">Commission:</h3>
-                                <p className="companyDetails">${this.state.commission} per share</p>
-                            </div>
-                            <div>
-                                <h3 className="companyDetails">Net Amount: </h3>
-                                <p className="companyDetails">${netAmount}</p>
-                            </div>
-                        </div>
-                        <div>
 
-                                <button name="buy2" onClick={this.onBuyStock}>BUY STOCK</button>
-                        </div>
-                        <div>
-                            <button name="sell" onClick={this.onSellStock}>SELL STOCK</button>
-                        </div>
-                        <h3 style={{display: this.state.errorMessage ? "block" : "none"}}>Not Enough Stocks!</h3>
-
-                    </div>
-                </div>
             </div>
         )
     }
