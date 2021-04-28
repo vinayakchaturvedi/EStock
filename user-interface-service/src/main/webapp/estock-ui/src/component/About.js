@@ -24,7 +24,7 @@ class About extends Component {
                 <div className="About">
                     <h2>EStock is an online resource where you can can create an account and then can analyze the stock
                         trend of various
-                        NYSE registered stocks and based on the analysis he/she can buy/sell the stock. For analyzing
+                        NYSE registered stocks and based on the analysis you can buy/sell the stock. For analyzing
                         the stock or company
                         performance various visualizations are available.</h2>
                     <div className="container">

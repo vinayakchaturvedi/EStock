@@ -598,7 +598,7 @@ button {
 }
 
 .About {
-    margin-top: 6%;
+    margin-top: 3%;
 }
 
 .About .container {
@@ -621,7 +621,9 @@ button {
 
 .About h2 {
     text-align: center;
-    color: #2a1c1c;
+    color: #0c0c0c;
+    border-bottom: dotted;
+    font-size: 180%;
 }
 
 .About p {
