@@ -1,5 +1,6 @@
 import React from "react";
 import GeneratePDF from './GeneratePDF'
+import {Link} from "react-router-dom";
 
 class BuyStock extends React.Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class BuyStock extends React.Component {
         this.onBuyStock = this.onBuyStock.bind(this);
         this.updateCustomerID = this.updateCustomerID.bind(this)
         this.onSellStock = this.onSellStock.bind(this)
+        this.logout = this.logout.bind(this);
     }
 
     async onBuyStock(event) {
@@ -70,6 +72,10 @@ class BuyStock extends React.Component {
         }
 
 
+    }
+
+    logout() {
+        localStorage.removeItem('customer');
     }
 
     async onSellStock(event) {
@@ -149,6 +155,13 @@ class BuyStock extends React.Component {
             this.callAPIs()
         }
         if (this.state.customer === undefined) {
+            if (localStorage.getItem('customer') === null) {
+                this.props.history.push({
+                    pathname: '/Error404',
+                    message: 'Backend server is down'
+                });
+            }
+
             this.setState({
                 customer: JSON.parse(localStorage.getItem('customer'))
             }, () => this.updateCustomerID())
@@ -181,6 +194,24 @@ class BuyStock extends React.Component {
 
         return (
             <div>
+                <div className="NAV">
+                    <nav>
+                        <input type="checkbox" id="check"/>
+                        <label htmlFor="check" className="checkBtn">
+                            <i className="fas fa-bars"/>
+                        </label>
+                        <label className="logo">EStock</label>
+                        <ul>
+                            <li><Link to="/About">About</Link></li>
+                            <li><Link to="/Contact">Contact</Link></li>
+                            <li><Link to={{
+                                pathname: '/UserProfile',
+                                customer: this.state.customer
+                            }}>Profile</Link></li>
+                            <li><Link to="/" onClick={this.logout}>Logout</Link></li>
+                        </ul>
+                    </nav>
+                </div>
                 <div className="buy-stock-page">
                     <div className="buy-stock-contain">
                         <div className="stock-view-card">

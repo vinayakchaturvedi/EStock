@@ -395,9 +395,9 @@ a:hover {
 
 .buy-stock-page {
     background-image: linear-gradient(to top, #555678, #050e21);
-    display: grid;
     background-size: cover;
-    padding-bottom: 400px
+    padding-bottom: 400px;
+    margin-top: -1%;
 }
 
 .buy-stock-page h3 {

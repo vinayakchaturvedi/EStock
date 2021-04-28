@@ -116,7 +116,7 @@ class GenerateView extends Component {
                             pathname: "/BuyStock",
                             stockName: this.state.stockName
                         }}>
-                            <button>Buy Stock</button>
+                            <button>Buy/Sell Stock</button>
                         </Link>
                     </div>
                 </div>
