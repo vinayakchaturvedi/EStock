@@ -1,0 +1,112 @@
+version: '3.7'
+services:
+  todo-frontend:
+    image: vinayak96/estock_frontend:latest
+    ports:
+      - "4200:80"
+    restart: always
+    depends_on:
+      - todo-customerService
+    networks:
+      - fullstack-application-network
+    container_name: frontend
+
+  todo-customerService:
+    image: vinayak96/estock_customerservice:latest
+    entrypoint: ["/bin/bash","-c"]
+    command:
+      - |
+        java -jar customer-service-0.0.1-SNAPSHOT.jar
+    tty: true
+    ports:
+      - "8091:8080"
+      - "8762:8762"
+    privileged: true
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - fullstack-application-network
+    container_name: customerservice
+
+  todo-tradeBookingService:
+    image: vinayak96/estock_tradebookingservice:latest
+    entrypoint: ["/bin/bash","-c"]
+    command:
+      - |
+        java -jar trade-booking-0.0.1-SNAPSHOT.jar
+    tty: true
+    ports:
+      - "8092:8080"
+      - "8763:8763"
+    privileged: true
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - fullstack-application-network
+    container_name: tradebookingservice
+
+  todo-settlementService:
+    image: vinayak96/estock_settlementservice:latest
+    entrypoint: ["/bin/bash","-c"]
+    command:
+      - |
+        java -jar settlement-service-0.0.1-SNAPSHOT.jar
+    tty: true
+    ports:
+      - "8093:8080"
+      - "8764:8764"
+    privileged: true
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - fullstack-application-network
+    container_name: settlementSservice
+
+  todo-userInterfaceService:
+    image: vinayak96/estock_userinterfaceservice:latest
+    entrypoint: ["/bin/bash","-c"]
+    command:
+      - |
+        java -jar user-interface-service-0.0.1-SNAPSHOT.jar
+    tty: true
+    ports:
+      - "8094:8080"
+      - "8081:8081"
+    privileged: true
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - fullstack-application-network
+    container_name: userinterfaceservice
+
+  # Database Service (Mysql)
+  db:
+    image: vinayak96/estock_db:latest
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: EStock
+      MYSQL_USER: EStock
+      MYSQL_PASSWORD: EStockPass
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - fullstack-application-network
+    container_name: db
+
+volumes:
+  db-data:
+  mongo-data:
+
+networks:
+  fullstack-application-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.29.0.0/16
