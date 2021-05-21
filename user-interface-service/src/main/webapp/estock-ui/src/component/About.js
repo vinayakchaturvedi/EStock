@@ -29,6 +29,16 @@ class About extends Component {
                         performance various visualizations are available.</h2>
                     <div className="container">
                         <div className="item">
+                            <h1>Shubhi Maheshwari</h1>
+                            <br/>
+                            <p>
+                                Shubhi is currently pursuing MTech in CSE at International Institute of Information
+                                Technology, Bangalore. She completed her BTech, CSE in the year 2019 at Medi-Caps Institute
+                                of Technology and Management Rau, Indore.
+                            </p>
+                            <br/>
+                        </div>
+                        <div className="item">
                             <h1>Vinayak Chaturvedi</h1>
                             <br/>
                             <p>
@@ -41,11 +51,13 @@ class About extends Component {
                             </p>
                         </div>
                         <div className="item">
-                            <h1>Shubhi Maheshwari</h1>
-                            <br/>
-                        </div>
-                        <div className="item">
                             <h1>Ankita Paul</h1>
+                            <br/>
+                            <p>
+                                Ankita is currently pursuing MTech in CSE at International Institute of Information
+                                Technology, Bangalore. She completed her BTech, CSE in the year 2020 at B.P Poddar
+                                Institute of Management and Technology, Kolkata.
+                            </p>
                             <br/>
                         </div>
                     </div>
