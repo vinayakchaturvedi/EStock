@@ -73,6 +73,13 @@
             <version>4.13</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.machinezoo.sourceafis</groupId>
+            <artifactId>sourceafis</artifactId>
+            <version>2.0.11</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
     </dependencies>
 
     <dependencyManagement>

@@ -23,14 +23,18 @@ public class CustomerOperationServiceImpl implements Service {
 
     @Override
     public Customer registerCustomer(Customer customer) {
-        if (latestTradingAccount == null || latestTradingAccount == 0) {
+        //1
+        if (latestTradingAccount == null || latestTradingAccount == 0) { //2
             loadLatestTradingAccount();
         }
+        //3
         customer.setTradingAccount(++latestTradingAccount);
-        if (!dao.registerCustomer(customer)) {
+        //4
+        if (!dao.registerCustomer(customer)) { //5
             latestTradingAccount--;
             return null;
         }
+        //6
         return customer;
     }
 
