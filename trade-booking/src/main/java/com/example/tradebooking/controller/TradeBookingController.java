@@ -34,15 +34,12 @@ public class TradeBookingController {
     @PostMapping(path = "/book",
             produces = {"application/json"},
             consumes = {"application/json"})
-    public ResponseEntity<Trade> book(@RequestBody JsonNode request) {
+    public ResponseEntity<Trade> book(@RequestBody JsonNode request) throws CloneNotSupportedException {
         System.out.println("Receiving booking request: " + request);
         Trade response = null;
-        try {
-            response = service.tradeCapture(request);
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        if (response == null) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        response = service.tradeCapture(request);
+        if (response == null)
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
