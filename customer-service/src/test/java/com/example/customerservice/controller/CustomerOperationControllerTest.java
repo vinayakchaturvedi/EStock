@@ -39,8 +39,23 @@ public class CustomerOperationControllerTest {
     }
 
 
+    /**
+     * Register Customer:
+     * 2 Prime paths:
+     * [1,2,3,5]
+     * [1,2,4,5]
+     * <p>
+     * 2 Edge Coverage paths:
+     * [1,2,3,5]
+     * [1,2,4,5]
+     *
+     * @throws Exception
+     */
+
     @Test
-    public void testRegisterCustomer() throws Exception {
+    public void testRegisterCustomerPath1() throws Exception {
+        //[1,2,3,5]
+
         Customer customer = new Customer();
         customer.setCustomerName("Rick");
         when(customerOperationService.registerCustomer(any(Customer.class))).thenReturn(customer);
@@ -56,7 +71,23 @@ public class CustomerOperationControllerTest {
     }
 
     @Test
-    public void testValidateLogin() throws Exception {
+    public void testRegisterCustomerPath2() throws Exception {
+        //[1,2,4,5]
+
+        when(customerOperationService.registerCustomer(any(Customer.class))).thenReturn(null);
+        final ResultActions result =
+                mvc.perform(
+                        post("/customer/registerCustomer")
+                                .content("{ \"customerName\": \"Rick\" }")
+                                .contentType(MediaType.APPLICATION_JSON));
+
+        result.andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testValidateLoginPath1() throws Exception {
+        //[1,2,3,5]
+
         Customer customer = new Customer();
         customer.setCustomerName("Rick");
         when(customerOperationService.validateAndRetrieveCustomer(any(Customer.class), eq(true))).thenReturn(customer);
@@ -69,5 +100,51 @@ public class CustomerOperationControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.customerName", is("Rick")));
+    }
+
+    @Test
+    public void testValidateLoginPath2() throws Exception {
+        //[1,2,4,5]
+
+        when(customerOperationService.validateAndRetrieveCustomer(any(Customer.class), eq(true))).thenReturn(null);
+        final ResultActions result =
+                mvc.perform(
+                        post("/customer/validateLogin")
+                                .content("{ \"customerName\": \"Rick\" }")
+                                .contentType(MediaType.APPLICATION_JSON));
+
+        result.andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testGetCustomerPath1() throws Exception {
+        //[1,2,3,5]
+
+        Customer customer = new Customer();
+        customer.setCustomerName("Rick");
+        when(customerOperationService.validateAndRetrieveCustomer(any(Customer.class), eq(false))).thenReturn(customer);
+        final ResultActions result =
+                mvc.perform(
+                        post("/customer/getCustomer")
+                                .content("{ \"customerName\": \"Rick\" }")
+                                .contentType(MediaType.APPLICATION_JSON));
+
+        result.andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.customerName", is("Rick")));
+    }
+
+    @Test
+    public void testGetCustomerPath2() throws Exception {
+        //[1,2,4,5]
+
+        when(customerOperationService.validateAndRetrieveCustomer(any(Customer.class), eq(false))).thenReturn(null);
+        final ResultActions result =
+                mvc.perform(
+                        post("/customer/getCustomer")
+                                .content("{ \"customerName\": \"Rick\" }")
+                                .contentType(MediaType.APPLICATION_JSON));
+
+        result.andExpect(status().isNotFound());
     }
 }

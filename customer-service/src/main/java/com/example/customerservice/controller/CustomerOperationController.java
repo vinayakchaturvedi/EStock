@@ -22,19 +22,29 @@ public class CustomerOperationController {
             produces = {"application/json"},
             consumes = {"application/json"})
     public ResponseEntity<Customer> validateLogin(@RequestBody Customer customer) {
+        //1
         System.out.println("Sign in " + customer);
         Customer response = service.validateAndRetrieveCustomer(customer, true);
-        if (response == null) return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        //2
+        if (response == null)       //3
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
+        //4
         return new ResponseEntity<>(response, HttpStatus.OK);
+
     }
 
     @PostMapping(path = "/registerCustomer",
             produces = {"application/json"},
             consumes = {"application/json"})
     public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
+        //1
         System.out.println("Sign up " + customer);
         Customer response = service.registerCustomer(customer);
-        if (response == null) return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        //2
+        if (response == null)       //3
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        //4
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
@@ -42,8 +52,12 @@ public class CustomerOperationController {
             produces = {"application/json"},
             consumes = {"application/json"})
     public ResponseEntity<Customer> getCustomer(@RequestBody Customer customer) {
+        //1
         Customer response = service.validateAndRetrieveCustomer(customer, false);
-        if (response == null) return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        //2
+        if (response == null)       //3
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        //4
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
